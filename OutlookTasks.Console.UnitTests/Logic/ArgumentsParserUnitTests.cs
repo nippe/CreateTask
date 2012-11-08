@@ -18,9 +18,18 @@ namespace OutlookTasks.Console.UnitTests.Logic
       ArgumentsParser argumentsParser = new ArgumentsParser();
 
       string subject = argumentsParser.GetSubject(inputstringWithRandomArgs.Split(' '));
-
+      
       Assert.Equal("Go shopping for milk", subject);
+    }
 
+    [Fact]
+    public void ParseArguments_Sould_Return_EverythingPrefixed() {
+      ArgumentsParser arguments = new ArgumentsParser();
+      IList<string> expectedOptions = new List<string>{"-td", "-p", "@pers", "@p"};
+
+      IList<string> options = arguments.GetOptions(inputstringWithRandomArgs.Split(' '));
+
+      Assert.Equal(expectedOptions, options);
     }
 
   }

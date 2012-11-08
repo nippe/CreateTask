@@ -42,8 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\TaskDTO.cs" />
+    <Compile Include="Interfaces\IArgumentParser.cs" />
+    <Compile Include="Logic\ArgumentParserExtensionMethods.cs" />
     <Compile Include="Logic\ArgumentsParser.cs" />
-    <Compile Include="Logic\IArgumentParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

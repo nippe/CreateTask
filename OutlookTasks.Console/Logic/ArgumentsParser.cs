@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 using OutlookTasks.Console.Entities;
+using OutlookTasks.Console.Interfaces;
 
 namespace OutlookTasks.Console.Logic
 {
@@ -21,17 +22,20 @@ namespace OutlookTasks.Console.Logic
       }
       return sb.ToString().Trim();
     }
-  }
 
-  public static class ExtensionMethods
-  {
-    public static bool NotPrefixed(this string value) {
-      List<string> prefixCharacters = new List<string>();
-      prefixCharacters.Add("@");
-      prefixCharacters.Add("-");
+    public IList<string> GetOptions(string[] args) {
+      IList<string> options = new List<string>();
+      
+      //TODO: Refactor to COnstans/COnfiguration static...
+      IList<string> prefixCharacters = new List<string> { "@", "-" };
 
-      return prefixCharacters.Contains( value.Substring(0, 1)) == false;
+      for (int i = 0; i < args.Length; i++) {
+        if(prefixCharacters.Contains(args[i].Substring(0,1))) {
+          options.Add(args[i]);
+        }
+      }
+
+      return options;
     }
   }
-
 }
