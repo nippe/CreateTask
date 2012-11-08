@@ -1,7 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutlookTasks.Console", "OutlookTasks.Console\OutlookTasks.Console.csproj", "{1792B446-8606-441B-A324-8F7A20B67EF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutlookTasks.Console.UnitTests", "OutlookTasks.Console.UnitTests\OutlookTasks.Console.UnitTests.csproj", "{DCBF6F46-FD70-4177-AA8D-1A839DFFD121}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1792B446-8606-441B-A324-8F7A20B67EF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1792B446-8606-441B-A324-8F7A20B67EF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1792B446-8606-441B-A324-8F7A20B67EF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1792B446-8606-441B-A324-8F7A20B67EF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCBF6F46-FD70-4177-AA8D-1A839DFFD121}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCBF6F46-FD70-4177-AA8D-1A839DFFD121}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCBF6F46-FD70-4177-AA8D-1A839DFFD121}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCBF6F46-FD70-4177-AA8D-1A839DFFD121}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
