@@ -44,6 +44,15 @@ namespace OutlookTasks.Console.UnitTests.Logic
         Assert.Equal(expectedLastDayOfWeek, optionsParser.DueDate);
       }
 
+      [Fact]
+      public void MoFlag_ShouldReturn_ComingMonday() {
+        DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
+        OptionsParser optionsParser = new OptionsParser(new List<string>{"-mo"});
+        DateTime expectedDate = DateTime.Parse("2012-11-19");
+
+        Assert.Equal(expectedDate, optionsParser.DueDate);
+      }
+
     }
   }
 }

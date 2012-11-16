@@ -36,6 +36,9 @@ namespace OutlookTasks.Console.Logic
       else if(_options.Contains("-nw")) {
         _dueDate = _dateHelper.GetLastDayOfNextWeek();
       }
+      else if (_options.Contains("-mo") || _options.Contains("-m")) {
+        _dueDate = _dateHelper.GetNextMonday();
+      }
     }
 
 

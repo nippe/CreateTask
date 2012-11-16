@@ -20,5 +20,21 @@ namespace OutlookTasks.Console.Logic
     public DateTime GetLastDateOfWeek() {
       return currentDate.AddDays(7 - (int)(currentDate.DayOfWeek));
     }
+
+    public DateTime GetNextMonday() {
+      return currentDate.AddDays( NumberOfDayToNext(DayOfWeek.Monday));
+    }
+
+
+
+    private static double NumberOfDayToNext(DayOfWeek dayOfWeek)
+    {
+      int faktor = 7;
+      if (DateTime.Today.DayOfWeek < dayOfWeek)
+      {
+        faktor = 0;
+      }
+      return (faktor - (double)DateTime.Today.DayOfWeek + (double)dayOfWeek);
+    }
   }
 }
