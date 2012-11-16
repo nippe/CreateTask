@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Entites\TaskDtoTests.cs" />
     <Compile Include="Logic\ArgumentsParserUnitTests.cs" />
+    <Compile Include="Logic\OptionParserUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

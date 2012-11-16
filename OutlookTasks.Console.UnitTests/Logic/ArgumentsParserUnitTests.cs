@@ -22,6 +22,7 @@ namespace OutlookTasks.Console.UnitTests.Logic
       Assert.Equal("Go shopping for milk", subject);
     }
 
+
     [Fact]
     public void ParseArguments_Sould_Return_EverythingPrefixed() {
       ArgumentsParser arguments = new ArgumentsParser();
@@ -31,6 +32,5 @@ namespace OutlookTasks.Console.UnitTests.Logic
 
       Assert.Equal(expectedOptions, options);
     }
-
   }
 }
