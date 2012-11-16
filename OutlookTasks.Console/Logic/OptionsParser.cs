@@ -7,11 +7,19 @@ namespace OutlookTasks.Console.Logic
   {
     private IList<string> _options;
     private DateTime _dueDate = DateTime.Today;
+    private DateTime _currentDate = DateTime.Today;
+    private readonly DateHelper _dateHelper;
 
     public OptionsParser(IList<string> options) {
+      _dateHelper = new DateHelper(DateTime.Today);
       _options = options;
 
       ParseOptions();
+    }
+
+    public OptionsParser(List<string> options, DateTime currentDate) : this(options) {
+      _dateHelper = new DateHelper(currentDate);
+      _currentDate = currentDate;
     }
 
     private void ParseOptions() {
@@ -22,7 +30,14 @@ namespace OutlookTasks.Console.Logic
       if(_options.Contains("-tm")) {
         _dueDate = DateTime.Today.AddDays(1);
       }
+      else if(_options.Contains("-tw")) {
+        _dueDate = _dateHelper.GetLastDateOfWeek();
+      }
+      else if(_options.Contains("-nw")) {
+        _dueDate = _dateHelper.GetLastDayOfNextWeek();
+      }
     }
+
 
     public DateTime DueDate {
       get { return _dueDate; }

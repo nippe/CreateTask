@@ -45,6 +45,7 @@
     <Compile Include="Interfaces\IArgumentParser.cs" />
     <Compile Include="Logic\ArgumentParserExtensionMethods.cs" />
     <Compile Include="Logic\ArgumentsParser.cs" />
+    <Compile Include="Logic\DateHelper.cs" />
     <Compile Include="Logic\OptionsParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -8,7 +8,7 @@ using Xunit;
 
 namespace OutlookTasks.Console.UnitTests.Logic
 {
-  class OptionParserUnitTests
+  public class OptionParserUnitTests
   {
     public class DateTests
     {
@@ -24,6 +24,25 @@ namespace OutlookTasks.Console.UnitTests.Logic
         Assert.Equal(DateTime.Today.AddDays(1), optionsParser.DueDate);
       }
 
+      [Fact]
+      public void TwFlag_ShoudReturn_LastDayOfWeek_SE() {
+        DateTime dateOfExecuting = DateTime.Parse("2012-11-16");        
+        OptionsParser optionsParser = new OptionsParser(new List<string> { "-tw" }, dateOfExecuting);
+
+        DateTime expectedLastDayOfWeek = DateTime.Parse("2012-11-18");
+
+        Assert.Equal(expectedLastDayOfWeek, optionsParser.DueDate);
+      }
+
+      [Fact]
+      public void NwFlag_ShoudReturn_LastDayOfNextWeek_SE()
+      {
+        DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
+        OptionsParser optionsParser = new OptionsParser(new List<string> { "-nw" }, dateOfExecuting);
+        DateTime expectedLastDayOfWeek = DateTime.Parse("2012-11-25");
+
+        Assert.Equal(expectedLastDayOfWeek, optionsParser.DueDate);
+      }
 
     }
   }
