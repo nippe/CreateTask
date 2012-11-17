@@ -48,10 +48,99 @@ namespace OutlookTasks.Console.UnitTests.Logic
       public void MoFlag_ShouldReturn_ComingMonday() {
         DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
         OptionsParser optionsParser = new OptionsParser(new List<string>{"-mo"});
-        DateTime expectedDate = DateTime.Parse("2012-11-19");
 
-        Assert.Equal(expectedDate, optionsParser.DueDate);
+        Assert.Equal(DateTime.Parse("2012-11-19"), optionsParser.DueDate);
       }
+
+
+      [Fact]
+      public void MFlag_ShouldReturn_ComingMonday() {
+        DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
+        OptionsParser optionsParser = new OptionsParser(new List<string>{"-m"});
+
+        Assert.Equal(DateTime.Parse("2012-11-19"), optionsParser.DueDate);
+      }
+
+
+      [Fact]
+      public void TuFlag_ShouldReturn_ComingMonday() {
+        DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
+        OptionsParser optionsParser = new OptionsParser(new List<string>{"-tu"});
+
+        Assert.Equal(DateTime.Parse("2012-11-20"), optionsParser.DueDate);
+      }
+
+
+      [Fact]
+      public void TiFlag_ShouldReturn_ComingMonday() {
+        DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
+        OptionsParser optionsParser = new OptionsParser(new List<string>{"-tu"});
+
+        Assert.Equal(DateTime.Parse("2012-11-20"), optionsParser.DueDate);
+      }
+
+
+      [Fact]
+      public void WeFlag_ShouldReturn_ComingMonday() {
+        DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
+        OptionsParser optionsParser = new OptionsParser(new List<string>{"-we"});
+
+        Assert.Equal(DateTime.Parse("2012-11-21"), optionsParser.DueDate);
+      }
+      
+      [Fact]
+      public void OnFlag_ShouldReturn_ComingWdnesday() {
+        DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
+        OptionsParser optionsParser = new OptionsParser(new List<string>{"-on"});
+
+        Assert.Equal(DateTime.Parse("2012-11-21"), optionsParser.DueDate);
+      }
+
+
+      [Fact]
+      public void ToFlag_ShouldReturn_ComingThursday() {
+        DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
+        OptionsParser optionsParser = new OptionsParser(new List<string>{"-to"});
+
+        Assert.Equal(DateTime.Parse("2012-11-22"), optionsParser.DueDate);
+      }
+      
+      [Fact]
+      public void ThFlag_ShouldReturn_ComingThursday() {
+        DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
+        OptionsParser optionsParser = new OptionsParser(new List<string>{"-th"});
+
+        Assert.Equal(DateTime.Parse("2012-11-22"), optionsParser.DueDate);
+      }
+
+
+      [Fact]
+      public void FrFlag_ShouldReturn_ComingFriday() {
+        DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
+        OptionsParser optionsParser = new OptionsParser(new List<string>{"-fr"});
+
+        Assert.Equal(DateTime.Parse("2012-11-23"), optionsParser.DueDate);
+      }
+      
+     [Fact]
+      public void SaFlag_ShouldReturn_ComingMSaturday() {
+        DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
+        OptionsParser optionsParser = new OptionsParser(new List<string>{"-sa"});
+
+        Assert.Equal(DateTime.Parse("2012-11-24"), optionsParser.DueDate);
+      }
+
+
+     [Fact]
+      public void LöFlag_ShouldReturn_ComingSaturday() {
+        DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
+        OptionsParser optionsParser = new OptionsParser(new List<string>{"-lö"});
+
+        Assert.Equal(DateTime.Parse("2012-11-24"), optionsParser.DueDate);
+      }
+
+
+      
 
     }
   }

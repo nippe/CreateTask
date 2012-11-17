@@ -39,6 +39,30 @@ namespace OutlookTasks.Console.Logic
       else if (_options.Contains("-mo") || _options.Contains("-m")) {
         _dueDate = _dateHelper.GetNextMonday();
       }
+      else if (_options.Contains("-tu") || _options.Contains("-ti"))
+      {
+        _dueDate = _dateHelper.GetNextTuesday();
+      }
+      else if (_options.Contains("-we") || _options.Contains("-on"))
+      {
+        _dueDate = _dateHelper.GetNextWednsday();
+      }
+      else if (_options.Contains("-to") || _options.Contains("-th"))
+      {
+        _dueDate = _dateHelper.GetNextThursday();
+      }
+      else if (_options.Contains("-fr"))
+      {
+        _dueDate = _dateHelper.GetNextFriday();
+      }
+      else if (_options.Contains("-sa") || _options.Contains("-lö"))
+      {
+        _dueDate = _dateHelper.GetNextSaturday();
+      }      
+      else if (_options.Contains("-su") || _options.Contains("-sö"))
+      {
+        _dueDate = _dateHelper.GetNextSunday();
+      }
     }
 
 
