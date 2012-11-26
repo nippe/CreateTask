@@ -71,6 +71,33 @@ namespace OutlookTasks.Console.Logic
       else if (_options.Contains("-mar")) {
         _dueDate = GetFirstDayInGivenMonth(Month.March);
       }
+      else if (_options.Contains("-apr")) {
+        _dueDate = GetFirstDayInGivenMonth(Month.April);
+      }
+      else if (_options.Contains("-may") || _options.Contains("-maj")) {
+        _dueDate = GetFirstDayInGivenMonth(Month.May);
+      }
+      else if (_options.Contains("-jun")) {
+        _dueDate = GetFirstDayInGivenMonth(Month.June);
+      }
+      else if (_options.Contains("-jul")) {
+        _dueDate = GetFirstDayInGivenMonth(Month.July);
+      }
+      else if (_options.Contains("-aug")) {
+        _dueDate = GetFirstDayInGivenMonth(Month.August);
+      }
+      else if (_options.Contains("-sep")) {
+        _dueDate = GetFirstDayInGivenMonth(Month.September);
+      }
+      else if (_options.Contains("-oct") || _options.Contains("-okt")) {
+        _dueDate = GetFirstDayInGivenMonth(Month.October);
+      }
+      else if (_options.Contains("-nov")) {
+        _dueDate = GetFirstDayInGivenMonth(Month.November);
+      }
+      else if (_options.Contains("-dec")) {
+        _dueDate = GetFirstDayInGivenMonth(Month.December);
+      }
     }
 
     private DateTime GetFirstDayInGivenMonth(Month month) {
@@ -97,6 +124,15 @@ namespace OutlookTasks.Console.Logic
   public enum Month{
     January = 1,
     February = 2,
-    March = 3
+    March = 3,
+    April = 4,
+    May = 5,
+    June = 6,
+    July = 7,
+    August = 8,
+    September = 9,
+    October = 10,
+    November= 11,
+    December = 12
   }
 }

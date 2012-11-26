@@ -164,51 +164,95 @@ namespace OutlookTasks.Console.UnitTests.Logic
 
       [Fact]
       public void Apr_InBeginning_Should_Return_FirstDayInApril() {
+        DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
+        var optionsParser = new OptionsParser(new List<string> { "-apr" }, dateOfExecuting);
+
+        Assert.Equal(DateTime.Parse("2013-04-01"), optionsParser.DueDate);
       }
 
       [Fact]
-      public void May_InBeginning_Should_Return_FirstDayInApril() {
-      }
+      public void May_InBeginning_Should_Return_FirstDayInMay() {
+        DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
+        var optionsParser = new OptionsParser(new List<string> { "-may" }, dateOfExecuting);
 
-
-      [Fact]
-      public void Maj_InSwedish_InBeginning_Should_Return_FirstDayInApril() {
-      }
-
-      [Fact]
-      public void Jun_InBeginning_Should_Return_FirstDayInApril() {
-      }
-
-      [Fact]
-      public void Jul_InBeginning_Should_Return_FirstDayInApril() {
+        Assert.Equal(DateTime.Parse("2013-05-01"), optionsParser.DueDate);
       }
 
 
       [Fact]
-      public void Aug_InBeginning_Should_Return_FirstDayInApril() {
+      public void Maj_InSwedish_InBeginning_Should_Return_FirstDayInMay() {
+        DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
+        var optionsParser = new OptionsParser(new List<string> { "-maj" }, dateOfExecuting);
+
+        Assert.Equal(DateTime.Parse("2013-05-01"), optionsParser.DueDate);
+      }
+
+      [Fact]
+      public void Jun_InBeginning_Should_Return_FirstDayInJune() {
+        DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
+        var optionsParser = new OptionsParser(new List<string> { "-jun" }, dateOfExecuting);
+
+        Assert.Equal(DateTime.Parse("2013-06-01"), optionsParser.DueDate);
+      }
+
+      [Fact]
+      public void Jul_InBeginning_Should_Return_FirstDayInJuly() {
+        DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
+        var optionsParser = new OptionsParser(new List<string> { "-jul" }, dateOfExecuting);
+
+        Assert.Equal(DateTime.Parse("2013-07-01"), optionsParser.DueDate);
       }
 
 
       [Fact]
-      public void Sep_InBeginning_Should_Return_FirstDayInApril() {
+      public void Aug_InBeginning_Should_Return_FirstDayInAugust() {
+        DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
+        var optionsParser = new OptionsParser(new List<string> { "-aug" }, dateOfExecuting);
+
+        Assert.Equal(DateTime.Parse("2013-08-01"), optionsParser.DueDate);
+      }
+
+
+      [Fact]
+      public void Sep_InBeginning_Should_Return_FirstDayInSeptember() {
+        DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
+        var optionsParser = new OptionsParser(new List<string> { "-sep" }, dateOfExecuting);
+
+        Assert.Equal(DateTime.Parse("2013-09-01"), optionsParser.DueDate);
       }
 
 
       [Fact]
       public void Oct_InBeginning_Should_Return_FirstDayInOctober() {
+        DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
+        var optionsParser = new OptionsParser(new List<string> { "-oct" }, dateOfExecuting);
+
+        Assert.Equal(DateTime.Parse("2013-10-01"), optionsParser.DueDate);
       }
 
       [Fact]
       public void Okt_InBeginning_Should_Return_FirstDayInOctober() {
+        DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
+        var optionsParser = new OptionsParser(new List<string> { "-okt" }, dateOfExecuting);
+
+        Assert.Equal(DateTime.Parse("2013-10-01"), optionsParser.DueDate);
       }
 
       [Fact]
-      public void NOV_InBeginning_Should_Return_FirstDayInNovember() {
+      public void Nov_InBeginning_Should_Return_FirstDayInNovember() {
+        DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
+        var optionsParser = new OptionsParser(new List<string> { "-nov" }, dateOfExecuting);
+
+        Assert.Equal(DateTime.Parse("2013-11-01"), optionsParser.DueDate);
       }
 
 
       [Fact]
       public void Dec_InBeginning_Should_Return_FirstDayInOctober() {
+        DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
+        var optionsParser = new OptionsParser(new List<string> { "-dec" }, dateOfExecuting);
+
+        Assert.Equal(DateTime.Parse("2012-12-01"), optionsParser.DueDate);
       }
     }
 
