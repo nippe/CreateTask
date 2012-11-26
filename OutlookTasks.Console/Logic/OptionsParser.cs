@@ -65,6 +65,12 @@ namespace OutlookTasks.Console.Logic
       else if (_options.Contains("-jan")) {
         _dueDate = GetFirstDayInGivenMonth(Month.January);
       }
+      else if (_options.Contains("-feb")) {
+        _dueDate = GetFirstDayInGivenMonth(Month.February);
+      }
+      else if (_options.Contains("-mar")) {
+        _dueDate = GetFirstDayInGivenMonth(Month.March);
+      }
     }
 
     private DateTime GetFirstDayInGivenMonth(Month month) {
@@ -89,6 +95,8 @@ namespace OutlookTasks.Console.Logic
   }
 
   public enum Month{
-    January = 1
+    January = 1,
+    February = 2,
+    March = 3
   }
 }

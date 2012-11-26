@@ -147,11 +147,19 @@ namespace OutlookTasks.Console.UnitTests.Logic
       }
       
       [Fact]
-      public void FEB_InBeginning_Should_Return_FirstDayInFebruary() {
+      public void Feb_InBeginning_Should_Return_FirstDayInFebruary() {
+        DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
+        var optionsParser = new OptionsParser(new List<string> { "-feb" }, dateOfExecuting);
+
+        Assert.Equal(DateTime.Parse("2013-02-01"), optionsParser.DueDate);
       }
 
       [Fact]
-      public void MAR_InBeginning_Should_Return_FirstDayInMars() {
+      public void Mar_InBeginning_Should_Return_FirstDayInMars() {
+        DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
+        var optionsParser = new OptionsParser(new List<string> { "-mar" }, dateOfExecuting);
+
+        Assert.Equal(DateTime.Parse("2013-03-01"), optionsParser.DueDate);
       }
 
       [Fact]
