@@ -310,6 +310,15 @@ namespace OutlookTasks.Console.UnitTests.Logic
         Assert.True(op.Tags.Contains("Hus"));
       }
 
+      [Fact]
+      public void Multiple_flags_Should_Set_ManyCategoryLabels()
+      {
+        OptionsParser op = new OptionsParser(new List<string> { "-h", "-t", "-b" });
+        Assert.True(op.Tags.Contains("Hus"));
+        Assert.True(op.Tags.Contains("Business"));
+        Assert.True(op.Tags.Contains("Travel"));
+      }
+
 
     }
   }
