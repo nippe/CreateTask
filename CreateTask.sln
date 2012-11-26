@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutlookTasks.Console", "OutlookTasks.Console\OutlookTasks.Console.csproj", "{1792B446-8606-441B-A324-8F7A20B67EF5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateTask.Console", "OutlookTasks.Console\CreateTask.Console.csproj", "{1792B446-8606-441B-A324-8F7A20B67EF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OutlookTasks.Console.UnitTests", "OutlookTasks.Console.UnitTests\OutlookTasks.Console.UnitTests.csproj", "{DCBF6F46-FD70-4177-AA8D-1A839DFFD121}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateTask.Console.UnitTests", "OutlookTasks.Console.UnitTests\CreateTask.Console.UnitTests.csproj", "{DCBF6F46-FD70-4177-AA8D-1A839DFFD121}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

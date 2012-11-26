@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace OutlookTasks.Console.Logic
+namespace CreateTask.Logic
 {
   public static class ArgumentParserExtensionMethods
   {

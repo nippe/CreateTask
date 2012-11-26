@@ -1,6 +1,6 @@
 using System;
 
-namespace OutlookTasks.Console.Logic
+namespace CreateTask.Logic
 {
   public class DateHelper
   {

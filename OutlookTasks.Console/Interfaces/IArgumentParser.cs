@@ -1,4 +1,4 @@
-namespace OutlookTasks.Console.Interfaces
+namespace CreateTask.Interfaces
 {
   public interface IArgumentParser
   {

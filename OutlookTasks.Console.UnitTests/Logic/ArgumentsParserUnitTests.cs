@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OutlookTasks.Console.Logic;
+﻿using System.Collections.Generic;
+using CreateTask.Logic;
 using Xunit;
 
-namespace OutlookTasks.Console.UnitTests.Logic
+namespace CreateTask.Console.UnitTests.Logic
 {
   public class ArgumentsParserUnitTests
   {

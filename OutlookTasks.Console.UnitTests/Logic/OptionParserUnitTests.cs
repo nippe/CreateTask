@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using OutlookTasks.Console.Logic;
+using CreateTask.Logic;
 using Xunit;
 
-namespace OutlookTasks.Console.UnitTests.Logic
+namespace CreateTask.Console.UnitTests.Logic
 {
   public class OptionParserUnitTests
   {

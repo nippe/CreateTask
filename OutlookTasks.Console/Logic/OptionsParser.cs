@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace OutlookTasks.Console.Logic
+namespace CreateTask.Logic
 {
   public class OptionsParser
   {

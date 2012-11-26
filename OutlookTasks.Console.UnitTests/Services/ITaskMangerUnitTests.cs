@@ -1,10 +1,9 @@
-﻿using System;
+﻿using CreateTask.Entities;
+using CreateTask.Interfaces;
 using Moq;
-using OutlookTasks.Console.Entities;
-using OutlookTasks.Console.Interfaces;
 using Xunit;
 
-namespace OutlookTasks.Console.UnitTests.Services
+namespace CreateTask.Console.UnitTests.Services
 {
   public class ITaskMangerUnitTests
   {

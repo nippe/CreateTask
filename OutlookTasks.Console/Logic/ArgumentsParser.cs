@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using OutlookTasks.Console.Entities;
-using OutlookTasks.Console.Interfaces;
+using CreateTask.Entities;
+using CreateTask.Interfaces;
 
-namespace OutlookTasks.Console.Logic
+namespace CreateTask.Logic
 {
   public class ArgumentsParser : IArgumentParser
   {

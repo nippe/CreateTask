@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OutlookTasks.Console.Entities;
+﻿using CreateTask.Entities;
 
-namespace OutlookTasks.Console.Interfaces
+namespace CreateTask.Interfaces
 {
   public interface ITaskManager
   {

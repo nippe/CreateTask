@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OutlookTasks.Console.Entities;
+using CreateTask.Entities;
 using Xunit;
 
-namespace OutlookTasks.Console.UnitTests.Entites
+namespace CreateTask.Console.UnitTests.Entites
 {
   public class TaskDtoTests
   {

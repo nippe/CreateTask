@@ -1,6 +1,6 @@
 using System;
 
-namespace OutlookTasks.Console.Entities
+namespace CreateTask.Entities
 {
   public interface ITaskDTO
   {
