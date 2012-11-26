@@ -55,7 +55,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OutlookTasks.Console\CreateTask.Console.csproj">
+    <ProjectReference Include="..\CreateTask.Console\CreateTask.Console.csproj">
       <Project>{1792B446-8606-441B-A324-8F7A20B67EF5}</Project>
       <Name>CreateTask.Console</Name>
     </ProjectReference>
