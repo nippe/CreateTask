@@ -56,14 +56,14 @@ namespace OutlookTasks.Console.Logic
 
 
 
-    private static double NumberOfDayToNext(DayOfWeek dayOfWeek)
+    private double NumberOfDayToNext(DayOfWeek dayOfWeek)
     {
       int faktor = 7;
-      if (DateTime.Today.DayOfWeek < dayOfWeek)
+      if (currentDate.DayOfWeek < dayOfWeek)
       {
         faktor = 0;
       }
-      return (faktor - (double)DateTime.Today.DayOfWeek + (double)dayOfWeek);
+      return (faktor - (double)currentDate.DayOfWeek + (double)dayOfWeek);
     }
 
 

@@ -2,7 +2,14 @@ using System;
 
 namespace OutlookTasks.Console.Entities
 {
-  public class TaskDTO
+  public interface ITaskDTO
+  {
+    string Subject { get; set; }
+    DateTime StartDate { get; set; }
+    DateTime DueDate { get; set; }
+  }
+
+  public class TaskDTO : ITaskDTO
   {
     public string Subject { get; set; }
     public DateTime StartDate { get; set; }

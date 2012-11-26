@@ -10,16 +10,15 @@ namespace OutlookTasks.Console.Logic
     private DateTime _currentDate = DateTime.Today;
     private readonly DateHelper _dateHelper;
 
-    public OptionsParser(IList<string> options) {
-      _dateHelper = new DateHelper(DateTime.Today);
+    public OptionsParser(IList<string> options) : this(options, DateTime.Today) {
+    }
+
+    public OptionsParser(IList<string> options, DateTime currentDate) {
+      _dateHelper = new DateHelper(currentDate);
+      _currentDate = currentDate;
       _options = options;
 
       ParseOptions();
-    }
-
-    public OptionsParser(List<string> options, DateTime currentDate) : this(options) {
-      _dateHelper = new DateHelper(currentDate);
-      _currentDate = currentDate;
     }
 
     private void ParseOptions() {
@@ -63,11 +62,33 @@ namespace OutlookTasks.Console.Logic
       {
         _dueDate = _dateHelper.GetNextSunday();
       }
+      else if (_options.Contains("-jan")) {
+        _dueDate = GetFirstDayInGivenMonth(Month.January);
+      }
+    }
+
+    private DateTime GetFirstDayInGivenMonth(Month month) {
+      int year = _currentDate.Year;
+      
+      if (_currentDate.Month < (int)month)
+      {
+        //this year
+      }
+      else {
+        //Next year
+        year++;
+      }
+
+      return new DateTime(year, (int)month, 1);
     }
 
 
     public DateTime DueDate {
       get { return _dueDate; }
     }
+  }
+
+  public enum Month{
+    January = 1
   }
 }
