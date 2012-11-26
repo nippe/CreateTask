@@ -257,5 +257,60 @@ namespace OutlookTasks.Console.UnitTests.Logic
     }
 
     #endregion
+
+
+    public class CategoriesTests
+    {
+
+      [Fact]
+      public void P_flag_Should_Set_Personal_CategoryLabel() {
+        OptionsParser op = new OptionsParser(new List<string> { "-p" });
+        Assert.True(op.Tags.Contains("Personal"));
+      }
+
+      [Fact]
+      public void W_flag_Should_Set_Business_CategoryLabel()
+      {
+        OptionsParser op = new OptionsParser(new List<string> { "-w" });
+        Assert.True(op.Tags.Contains("Business"));
+      }
+
+      [Fact]
+      public void B_flag_Should_Set_Business_CategoryLabel()
+      {
+        OptionsParser op = new OptionsParser(new List<string> { "-b" });
+        Assert.True(op.Tags.Contains("Business"));
+      }
+
+      [Fact]
+      public void T_flag_Should_Set_Travel_CategoryLabel()
+      {
+        OptionsParser op = new OptionsParser(new List<string> { "-t" });
+        Assert.True(op.Tags.Contains("Travel"));
+      }
+
+      [Fact]
+      public void I_flag_Should_Set_Info_CategoryLabel()
+      {
+        OptionsParser op = new OptionsParser(new List<string> { "-i" });
+        Assert.True(op.Tags.Contains("Info"));
+      }
+
+      [Fact]
+      public void F_flag_Should_Set_Family_CategoryLabel()
+      {
+        OptionsParser op = new OptionsParser(new List<string> { "-f" });
+        Assert.True(op.Tags.Contains("Family"));
+      }
+
+      [Fact]
+      public void H_flag_Should_Set_House_CategoryLabel()
+      {
+        OptionsParser op = new OptionsParser(new List<string> { "-h" });
+        Assert.True(op.Tags.Contains("Hus"));
+      }
+
+
+    }
   }
 }

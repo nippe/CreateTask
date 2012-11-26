@@ -50,6 +50,7 @@
     <Compile Include="Interfaces\ITaskManager.cs" />
     <Compile Include="Logic\ArgumentParserExtensionMethods.cs" />
     <Compile Include="Logic\ArgumentsParser.cs" />
+    <Compile Include="Logic\Constants.cs" />
     <Compile Include="Logic\DateHelper.cs" />
     <Compile Include="Logic\OptionsParser.cs" />
     <Compile Include="Logic\OutlookTaskManager.cs" />

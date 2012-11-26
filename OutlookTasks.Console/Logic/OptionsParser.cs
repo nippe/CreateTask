@@ -9,7 +9,8 @@ namespace OutlookTasks.Console.Logic
     private DateTime _dueDate = DateTime.Today;
     private DateTime _currentDate = DateTime.Today;
     private readonly DateHelper _dateHelper;
-
+    private IList<string> _tags = new List<string>();
+     
     public OptionsParser(IList<string> options) : this(options, DateTime.Today) {
     }
 
@@ -23,6 +24,38 @@ namespace OutlookTasks.Console.Logic
 
     private void ParseOptions() {
       ParseDueDate();
+      ParseTags();
+    }
+
+    private void ParseTags() {
+      if(_options.Contains("-p")) {
+        _tags.Add(Constants.TagNames.Personal);
+      }
+
+      if(_options.Contains("-b") || _options.Contains("-w")) {
+        _tags.Add(Constants.TagNames.Business);
+      }
+
+      if(_options.Contains("-f")) {
+        _tags.Add(Constants.TagNames.Family);
+      }
+
+      if(_options.Contains("-h")) {
+        _tags.Add(Constants.TagNames.House);
+      }
+
+      if(_options.Contains("-i")) {
+        _tags.Add(Constants.TagNames.Information);
+      }
+
+      if(_options.Contains("-t")) {
+        _tags.Add(Constants.TagNames.TravelTime);
+      }
+
+
+
+
+
     }
 
     private void ParseDueDate() {
@@ -118,6 +151,10 @@ namespace OutlookTasks.Console.Logic
 
     public DateTime DueDate {
       get { return _dueDate; }
+    }
+
+    public IList<string> Tags {
+      get { return _tags; }
     }
   }
 
