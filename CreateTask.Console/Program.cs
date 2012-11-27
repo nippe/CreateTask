@@ -1,4 +1,6 @@
 ﻿using System;
+using CreateTask.Entities;
+using CreateTask.Interfaces;
 using CreateTask.Logic;
 
 namespace CreateTask
@@ -7,9 +9,18 @@ namespace CreateTask
   {
     static void Main(string[] args)
     {
+      ITaskManager taskManager = new OutlookTaskManager();
+      IArgumentParser argumentParser = new ArgumentParser();
 
-      
+      string subject = argumentParser.GetSubject(args);
+      var options = argumentParser.GetOptions(args);
+      var optionParser = new OptionsParser(options);
 
+
+
+      TaskDTO taskDto;
+
+      //taskManager.CreateTask(taskDto);
     }
   }
 }

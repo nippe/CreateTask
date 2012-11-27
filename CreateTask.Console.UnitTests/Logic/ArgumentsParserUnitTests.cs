@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using CreateTask.Entities;
+using CreateTask.Interfaces;
 using CreateTask.Logic;
 using Xunit;
 
@@ -11,9 +13,9 @@ namespace CreateTask.Console.UnitTests.Logic
     [Fact]
     public void ParseSubject_Should_Return_Everything_Not_Prefiexed()
     {
-      ArgumentsParser argumentsParser = new ArgumentsParser();
+      ArgumentParser argumentParser = new ArgumentParser();
 
-      string subject = argumentsParser.GetSubject(inputstringWithRandomArgs.Split(' '));
+      string subject = argumentParser.GetSubject(inputstringWithRandomArgs.Split(' '));
       
       Assert.Equal("Go shopping for milk", subject);
     }
@@ -21,12 +23,14 @@ namespace CreateTask.Console.UnitTests.Logic
 
     [Fact]
     public void ParseArguments_Sould_Return_EverythingPrefixed() {
-      ArgumentsParser arguments = new ArgumentsParser();
+      ArgumentParser argument = new ArgumentParser();
       IList<string> expectedOptions = new List<string>{"-td", "-p", "@pers", "@p"};
 
-      IList<string> options = arguments.GetOptions(inputstringWithRandomArgs.Split(' '));
+      IList<string> options = argument.GetOptions(inputstringWithRandomArgs.Split(' '));
 
       Assert.Equal(expectedOptions, options);
     }
+
+   
   }
 }

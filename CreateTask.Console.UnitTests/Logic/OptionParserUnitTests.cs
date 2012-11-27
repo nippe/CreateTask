@@ -137,6 +137,24 @@ namespace CreateTask.Console.UnitTests.Logic
         Assert.Equal(DateTime.Parse("2012-11-17"), optionsParser.DueDate);
       }
 
+      [Fact]
+      public void SuFlag_ShouldReturn_ComingMSunday()
+      {
+        DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
+        var optionsParser = new OptionsParser(new List<string> { "-su" }, dateOfExecuting);
+
+        Assert.Equal(DateTime.Parse("2012-11-18"), optionsParser.DueDate);
+      }
+
+      [Fact]
+      public void SöFlag_ShouldReturn_ComingMSunday()
+      {
+        DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
+        var optionsParser = new OptionsParser(new List<string> { "-sö" }, dateOfExecuting);
+
+        Assert.Equal(DateTime.Parse("2012-11-18"), optionsParser.DueDate);
+      }
+
 
       [Fact]
       public void Jan_InBeginning_Should_Return_FirstDayInJanuary() {

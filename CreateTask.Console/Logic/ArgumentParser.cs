@@ -5,13 +5,9 @@ using CreateTask.Interfaces;
 
 namespace CreateTask.Logic
 {
-  public class ArgumentsParser : IArgumentParser
+  public class ArgumentParser : IArgumentParser
   {
-    public TaskDTO ParseCommands(string[] commandLineArguments) {
-      return new TaskDTO();
-    }
-
-    public string GetSubject(string[] inputstringWithRandomArgs) {
+  public string GetSubject(string[] inputstringWithRandomArgs) {
       StringBuilder sb = new StringBuilder();
 
       for (int i = 0; i < inputstringWithRandomArgs.Length; i++) {

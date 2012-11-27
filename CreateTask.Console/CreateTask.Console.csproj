@@ -38,6 +38,9 @@
     <Reference Include="Microsoft.Office.Interop.Outlook, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms" />
@@ -48,11 +51,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\TaskBuilder.cs" />
     <Compile Include="Entities\TaskDTO.cs" />
     <Compile Include="Interfaces\IArgumentParser.cs" />
+    <Compile Include="Interfaces\IOptionsParser.cs" />
+    <Compile Include="Interfaces\ITaskBuilder.cs" />
     <Compile Include="Interfaces\ITaskManager.cs" />
     <Compile Include="Logic\ArgumentParserExtensionMethods.cs" />
-    <Compile Include="Logic\ArgumentsParser.cs" />
+    <Compile Include="Logic\ArgumentParser.cs" />
     <Compile Include="Logic\Constants.cs" />
     <Compile Include="Logic\DateHelper.cs" />
     <Compile Include="Logic\OptionsParser.cs" />
@@ -62,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="folder_orange_scheduled_tasks.ico" />

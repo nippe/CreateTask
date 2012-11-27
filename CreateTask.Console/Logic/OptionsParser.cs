@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
+using CreateTask.Interfaces;
 
 namespace CreateTask.Logic
 {
-  public class OptionsParser
+  public class OptionsParser : IOptionsParser
   {
     private IList<string> _options;
     private DateTime _dueDate = DateTime.Today;
