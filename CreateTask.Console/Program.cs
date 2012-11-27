@@ -11,16 +11,12 @@ namespace CreateTask
     {
       ITaskManager taskManager = new OutlookTaskManager();
       IArgumentParser argumentParser = new ArgumentParser();
+      IOptionsParser optionParser = new OptionsParser(argumentParser.GetOptions(args));
+      ITaskBuilder taskBuilder = new TaskBuilder(args, argumentParser, optionParser);
 
-      string subject = argumentParser.GetSubject(args);
-      var options = argumentParser.GetOptions(args);
-      var optionParser = new OptionsParser(options);
+      ITaskDTO taskDto = taskBuilder.CreateTask();
 
-
-
-      TaskDTO taskDto;
-
-      //taskManager.CreateTask(taskDto);
+      taskManager.CreateTask(taskDto);
     }
   }
 }
