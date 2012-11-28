@@ -4,6 +4,7 @@ using CreateTask.Entities;
 using CreateTask.Interfaces;
 using Microsoft.Office.Interop.Outlook;
 using Application = Microsoft.Office.Interop.Outlook.Application;
+using System.Linq;
 
 namespace CreateTask.Logic
 {
@@ -24,6 +25,7 @@ namespace CreateTask.Logic
           task.Subject = taskData.Subject;
           task.DueDate = taskData.DueDate;
           task.StartDate = taskData.DueDate;
+          task.Categories = string.Join(";", taskData.Tags.ToArray());
           task.Save();
         }
       } catch(System.Exception ex) {
