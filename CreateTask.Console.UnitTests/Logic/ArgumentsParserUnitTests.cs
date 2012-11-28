@@ -31,6 +31,13 @@ namespace CreateTask.Console.UnitTests.Logic
       Assert.Equal(expectedOptions, options);
     }
 
+    [Fact]
+    public void NoSubject_Should_Return_NA() {
+      IArgumentParser argumentParser = new ArgumentParser();
+
+      Assert.Equal("N/A", argumentParser.GetSubject(new string[] {"-f-tm"}));
+    }
+
    
   }
 }

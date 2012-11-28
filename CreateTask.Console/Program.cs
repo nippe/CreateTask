@@ -1,7 +1,9 @@
 ﻿using System;
+using CreateTask.Config;
 using CreateTask.Entities;
 using CreateTask.Interfaces;
 using CreateTask.Logic;
+using StructureMap;
 
 namespace CreateTask
 {
@@ -9,9 +11,12 @@ namespace CreateTask
   {
     static void Main(string[] args)
     {
-      ITaskManager taskManager = new OutlookTaskManager();
-      IArgumentParser argumentParser = new ArgumentParser();
-      IOptionsParser optionParser = new OptionsParser(argumentParser.GetOptions(args));
+      ContainerBootstrapper.BootstrapStructureMap(args);
+      
+      ITaskManager taskManager = ObjectFactory.GetInstance<ITaskManager>();
+      IArgumentParser argumentParser = ObjectFactory.GetInstance<IArgumentParser>();
+      IOptionsParser optionParser = ObjectFactory.GetInstance<IOptionsParser>();
+
       ITaskBuilder taskBuilder = new TaskBuilder(args, argumentParser, optionParser);
 
       ITaskDTO taskDto = taskBuilder.CreateTask();

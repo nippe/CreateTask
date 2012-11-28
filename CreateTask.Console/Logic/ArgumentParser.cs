@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using CreateTask.Entities;
 using CreateTask.Interfaces;
 
 namespace CreateTask.Logic
 {
   public class ArgumentParser : IArgumentParser
   {
-  public string GetSubject(string[] inputstringWithRandomArgs) {
-      StringBuilder sb = new StringBuilder();
+    #region IArgumentParser Members
+
+    public string GetSubject(string[] inputstringWithRandomArgs) {
+      var sb = new StringBuilder();
 
       for (int i = 0; i < inputstringWithRandomArgs.Length; i++) {
         if (inputstringWithRandomArgs[i].NotPrefixed()) {
@@ -16,22 +17,28 @@ namespace CreateTask.Logic
           sb.Append(" ");
         }
       }
+
+      if(sb.Length == 0 ) {
+        return "N/A";
+      }
       return sb.ToString().Trim();
     }
 
     public IList<string> GetOptions(string[] args) {
       IList<string> options = new List<string>();
-      
+
       //TODO: Refactor to COnstans/COnfiguration static...
-      IList<string> prefixCharacters = new List<string> { "@", "-" };
+      IList<string> prefixCharacters = new List<string> {"@", "-"};
 
       for (int i = 0; i < args.Length; i++) {
-        if(prefixCharacters.Contains(args[i].Substring(0,1))) {
+        if (prefixCharacters.Contains(args[i].Substring(0, 1))) {
           options.Add(args[i]);
         }
       }
 
       return options;
     }
+
+    #endregion
   }
 }

@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config\ContainerBootrapper.cs" />
     <Compile Include="Entities\TaskBuilder.cs" />
     <Compile Include="Entities\TaskDTO.cs" />
     <Compile Include="Interfaces\IArgumentParser.cs" />
@@ -76,6 +77,7 @@
   <ItemGroup>
     <Content Include="folder_orange_scheduled_tasks.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
