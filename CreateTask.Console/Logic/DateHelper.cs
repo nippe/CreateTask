@@ -7,10 +7,15 @@ namespace CreateTask.Logic
     private DateTime currentDate;
 
     public DateHelper() {
+      currentDate = DateTime.Today;
     }
 
     public DateHelper(DateTime CurrentDate) {
       currentDate = CurrentDate;
+    }
+
+    public DateTime CurrentDate {
+      get { return currentDate;}
     }
 
     public DateTime GetLastDayOfNextWeek() {
