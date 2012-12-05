@@ -57,7 +57,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy $(ProjectDir)$(OutDir)CreateTask.TaskManagers.dll $(SolutionDir)CreateTask.Console\$(OutDir)</PostBuildEvent>
+    <PostBuildEvent>copy $(ProjectDir)$(OutDir)CreateTask.TaskManagers.dll $(SolutionDir)CreateTask.Console\$(OutDir)
+copy $(ProjectDir)$(OutDir)RestSharp.dll $(SolutionDir)CreateTask.Console\$(OutDir)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

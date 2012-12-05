@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using CreateTask.Config;
 using CreateTask.Entities;
 using CreateTask.Interfaces;
@@ -25,7 +26,16 @@ namespace CreateTask
       var taskManagers = container.GetAllInstances<ITaskManager>();
 
       foreach (ITaskManager taskManager in taskManagers) {
-        taskManager.CreateTask(taskDto);           
+        if(taskManager.GetType().ToString().Contains("Trello")) {
+          if( argumentParser.GetOptions(args).Contains("-trello")) {
+            taskManager.CreateTask(taskDto);                       
+          }
+        }
+        else {
+          if (!argumentParser.GetOptions(args).Contains("-trello")) {
+            taskManager.CreateTask(taskDto);
+          }
+        }
       }
     }
   }

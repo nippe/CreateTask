@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,33 +16,65 @@ namespace CreateTask.TaskManagers
     {
       public void CreateTask(ITaskDTO td) {
         string key = "1b6f97cd8ec872ec8eb61347acc2de5d";
-        string token = "cefe47b41c70db104e5f2b5ad31fb9d0a70cc17a2cbb1028d4f0e0cd8b03163b";
+        string token = "e61f7ea5c20d09c59f956c92423f7571587ad1674df9ed8cc57ab5f5eb9e6f1e";
         string idList = "4ff02e8d3692811f7a60c058";
 
-        
-        RestClient client = new RestClient(TrelloConfig.TrelloBaseUrl);
+        RestClient client = new RestClient("https://api.trello.com/1");
 
         IRestRequest createCardRequest = new RestRequest(TrelloConfig.Resourse_Cards);
         createCardRequest.Method = Method.POST;
-        createCardRequest.RequestFormat = DataFormat.Json;
-        createCardRequest.AddParameter("name", td.Subject);
-        createCardRequest.AddParameter("idList", idList);
-        //createCardRequest.AddParameter("due", td.DueDate); // Available at create?
-        createCardRequest.AddParameter("key", key);
-        createCardRequest.AddParameter("token", token);
+        createCardRequest.AddParameter(TrelloConfig.ParameterNames.Name, td.Subject);               
+        createCardRequest.AddParameter(TrelloConfig.ParameterNames.IdList, TrelloConfig.ListId);
+        createCardRequest.AddParameter(TrelloConfig.ParameterNames.Key, key);
+        createCardRequest.AddParameter(TrelloConfig.ParameterNames.Token, token);
 
         var createResponse = client.Execute<TrelloCard>(createCardRequest);
-        TrelloCard card = createResponse.Data;  
+        TrelloCard card = createResponse.Data;
+
+        IRestRequest addLabelsRequest = new RestRequest(
+          string.Format("{0}/{1}{2}", 
+            TrelloConfig.Resourse_Cards, 
+            card.id, 
+            TrelloConfig.Resourse_Labels)
+        );
+        addLabelsRequest.Method = Method.POST;
+        addLabelsRequest.AddParameter(TrelloConfig.ParameterNames.Value, "orange");
+        addLabelsRequest.AddParameter(TrelloConfig.ParameterNames.Key, key);
+        addLabelsRequest.AddParameter(TrelloConfig.ParameterNames.Token, token);
+        var labelResult = client.Execute(addLabelsRequest);
+
+        IRestRequest dueDateReq = new RestRequest(string.Format("{0}/{1}/due", TrelloConfig.Resourse_Cards, card.id));
+        dueDateReq.Method = Method.PUT;
+        dueDateReq.AddParameter(TrelloConfig.ParameterNames.Key, key);
+        dueDateReq.AddParameter(TrelloConfig.ParameterNames.Token, token);
+        dueDateReq.AddParameter(TrelloConfig.ParameterNames.Value, td.DueDate.ToString(CultureInfo.InvariantCulture)); 
+
+        var dueResp = client.Execute(dueDateReq);
+
+        
+        //RestClient client = new RestClient(TrelloConfig.TrelloBaseUrl);
+
+        //IRestRequest createCardRequest = new RestRequest(TrelloConfig.Resourse_Cards);
+        //createCardRequest.Method = Method.POST;
+        //createCardRequest.RequestFormat = DataFormat.Json;
+        //createCardRequest.AddParameter("name", td.Subject);
+        //createCardRequest.AddParameter("idList", idList);
+        ////createCardRequest.AddParameter("due", td.DueDate); // Available at create?
+        //createCardRequest.AddParameter("key", key);
+        //createCardRequest.AddParameter("token", token);
+
+        //var createResponse = client.Execute<TrelloCard>(createCardRequest);
+        //TrelloCard card = createResponse.Data;  
 
 
-        IRestRequest addLabelsRequest = new RestRequest(string.Format("{0}/{1}/{2}", TrelloConfig.Resourse_Cards, card.id, "lables"));
-        addLabelsRequest.AddParameter("value", "orange");
-        addLabelsRequest.AddParameter("key", key);
-        addLabelsRequest.AddParameter("token", token);
+        //IRestRequest addLabelsRequest = new RestRequest(string.Format("{0}/{1}/{2}", TrelloConfig.Resourse_Cards, card.id, "lables"));
+        //addLabelsRequest.AddParameter("value", "orange");
+        //addLabelsRequest.AddParameter("key", key);
+        //addLabelsRequest.AddParameter("token", token);
 
-        client.Execute(addLabelsRequest);
+        //client.Execute(addLabelsRequest);
 
-        //Add labels
+        ////Add labels
 
 
       }
