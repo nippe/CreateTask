@@ -3,6 +3,7 @@ using System.Diagnostics;
 using CreateTask.Interfaces;
 using CreateTask.Logic;
 using StructureMap;
+using System.Linq;
 
 namespace CreateTask.Config
 {
@@ -10,11 +11,19 @@ namespace CreateTask.Config
   {
     public static void BootstrapStructureMap(string[] args) {
       ObjectFactory.Initialize(
-        x =>
+        init =>
           {
-            x.ForRequestedType<ITaskManager>().TheDefaultIsConcreteType<OutlookTaskManager>();
-            x.For<IArgumentParser>().Use<ArgumentParser>();
-            x.For<IOptionsParser>().Use<OptionsParser>().Ctor<string[]>("options").Is(args).Ctor<DateTime>("currentDate").Is(DateTime.Today);
+            init.Scan(scan =>
+                     {
+                       scan.AssembliesFromApplicationBaseDirectory();
+                       scan.AddAllTypesOf<ITaskManager>();
+                     });
+            
+
+            //x.ForRequestedType<ITaskManager>().TheDefaultIsConcreteType<OutlookTaskManager>();
+            //init.For<ITaskManager>().Use(a => a.GetAllInstances<ITaskManager>().First());
+            init.For<IArgumentParser>().Use<ArgumentParser>();
+            init.For<IOptionsParser>().Use<OptionsParser>().Ctor<string[]>("options").Is(args).Ctor<DateTime>("currentDate").Is(DateTime.Today);
           }
         );
       Debug.Write(ObjectFactory.WhatDoIHave());

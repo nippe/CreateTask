@@ -12,8 +12,9 @@ namespace CreateTask
     static void Main(string[] args)
     {
       ContainerBootstrapper.BootstrapStructureMap(args);
-      
-      ITaskManager taskManager = ObjectFactory.GetInstance<ITaskManager>();
+
+      IContainer container = ObjectFactory.Container;
+      //ITaskManager taskManager = ObjectFactory.GetInstance<ITaskManager>();
       IArgumentParser argumentParser = ObjectFactory.GetInstance<IArgumentParser>();
       IOptionsParser optionParser = ObjectFactory.GetInstance<IOptionsParser>();
 
@@ -21,7 +22,11 @@ namespace CreateTask
 
       ITaskDTO taskDto = taskBuilder.CreateTask();
 
-      taskManager.CreateTask(taskDto);
+      var taskManagers = container.GetAllInstances<ITaskManager>();
+
+      foreach (ITaskManager taskManager in taskManagers) {
+        taskManager.CreateTask(taskDto);           
+      }
     }
   }
 }

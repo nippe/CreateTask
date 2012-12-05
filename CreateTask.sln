@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateTask.Console", "Creat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateTask.Console.UnitTests", "CreateTask.Console.UnitTests\CreateTask.Console.UnitTests.csproj", "{DCBF6F46-FD70-4177-AA8D-1A839DFFD121}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateTask.TaskManagers", "CreateTask.TaskManagers\CreateTask.TaskManagers.csproj", "{90F95026-C526-4DF2-A8B0-C17D19C8D783}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{DCBF6F46-FD70-4177-AA8D-1A839DFFD121}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCBF6F46-FD70-4177-AA8D-1A839DFFD121}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCBF6F46-FD70-4177-AA8D-1A839DFFD121}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90F95026-C526-4DF2-A8B0-C17D19C8D783}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90F95026-C526-4DF2-A8B0-C17D19C8D783}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90F95026-C526-4DF2-A8B0-C17D19C8D783}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90F95026-C526-4DF2-A8B0-C17D19C8D783}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

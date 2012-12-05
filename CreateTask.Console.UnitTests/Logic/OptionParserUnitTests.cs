@@ -43,6 +43,15 @@ namespace CreateTask.Console.UnitTests.Logic
       }
 
       [Fact]
+      public void OnewFlag_ShoudReturn_LastDayOfNextWeek_SE() {
+        DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
+        var optionsParser = new OptionsParser(new List<string> {"-1w"}, dateOfExecuting);
+        DateTime expectedLastDayOfWeek = DateTime.Parse("2012-11-23");
+
+        Assert.Equal(expectedLastDayOfWeek, optionsParser.DueDate);
+      }
+
+      [Fact]
       public void MoFlag_ShouldReturn_ComingMonday() {
         DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
         var optionsParser = new OptionsParser(new List<string> {"-mo"}, dateOfExecuting);

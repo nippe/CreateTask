@@ -69,6 +69,9 @@ namespace CreateTask.Logic
       else if(_options.Contains("-nw")) {
         _dueDate = _dateHelper.GetLastDayOfNextWeek();
       }
+      else if(_options.Contains("-1w")) {
+        _dueDate = _currentDate.AddDays(7);
+      }
       else if (_options.Contains("-mo") || _options.Contains("-m")) {
         _dueDate = _dateHelper.GetNextMonday();
       }
