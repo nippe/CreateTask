@@ -15,12 +15,10 @@ namespace CreateTask
       ContainerBootstrapper.BootstrapStructureMap(args);
 
       IContainer container = ObjectFactory.Container;
-      //ITaskManager taskManager = ObjectFactory.GetInstance<ITaskManager>();
       IArgumentParser argumentParser = ObjectFactory.GetInstance<IArgumentParser>();
       IOptionsParser optionParser = ObjectFactory.GetInstance<IOptionsParser>();
 
       ITaskBuilder taskBuilder = new TaskBuilder(args, argumentParser, optionParser);
-
       ITaskDTO taskDto = taskBuilder.CreateTask();
 
       var taskManagers = container.GetAllInstances<ITaskManager>();
