@@ -9,4 +9,9 @@ Disclaimer
 -------------
 I made this tool is made to fit my needs and not be a general purpose tool. But do with it what you like. My plan is to make it flexible and configurable.
 
+Usage
+--------
+See the [wiki](https://github.com/nippe/CreateTask/wiki)
+
+
 
