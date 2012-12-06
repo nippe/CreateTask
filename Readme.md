@@ -11,7 +11,7 @@ I made this tool is made to fit my needs and not be a general purpose tool. But 
 
 Usage
 --------
-See the [wiki](https://github.com/nippe/CreateTask/wiki)
+See the [wiki](https://github.com/nippe/CreateTask/wiki) for details on usage.
 
 
 

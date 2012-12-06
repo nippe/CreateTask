@@ -1,16 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CreateTask.TaskManagers.Trello
+﻿namespace CreateTask.TaskManagers.Trello
 {
-  class TrelloConfig
+  internal class TrelloConfig
   {
+    private static string ConfigFile = "TrelloConfig.xml.user";
+
     internal static string TrelloBaseUrl = "https://api.trello.com/1";
-    internal static string Resourse_Cards = "/cards";
-    internal static string Resourse_Labels = "/labels";
+
+    public static string ListId {
+      get {
+        return new ConfigFileReader(ConfigFile).IdList;
+      }
+    }
+
+    public static string Key {
+      get { return new ConfigFileReader(ConfigFile).Key; }
+    }
+
+    public static string Token {
+      get { return new ConfigFileReader(ConfigFile).Token; }
+    }
+
+    #region Nested type: ParameterNames
 
     internal static class ParameterNames
     {
@@ -22,8 +32,16 @@ namespace CreateTask.TaskManagers.Trello
       internal static string Name = "name";
     }
 
-    public static string ListId {
-      get { return "4fd610aeacd4c77f791fbb1c"; }
+    #endregion
+
+    #region Nested type: Resourses
+
+    internal static class Resourses
+    {
+      internal static string Cards = "/cards";
+      internal static string Labels = "/labels";
     }
+
+    #endregion
   }
 }

@@ -4,6 +4,6 @@ namespace CreateTask.Interfaces
 {
   public interface ITaskManager
   {
-    void CreateTask(ITaskDTO td);
+    void CreateTask(ITaskDTO taskData);
   }
 }
