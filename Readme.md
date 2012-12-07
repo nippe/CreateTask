@@ -13,5 +13,11 @@ Usage
 --------
 See the [wiki](https://github.com/nippe/CreateTask/wiki) for details on usage.
 
+In short:
+
+    ct.exe Call Phil about haloween party -tm
+
+Creates a task in Microsoft Outllook with the subject "Call Phil about haloween party" and due date tomorrow.
+
 
 
