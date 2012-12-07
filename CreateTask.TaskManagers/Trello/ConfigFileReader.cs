@@ -1,19 +1,25 @@
+using System.IO;
 using System.Xml.Linq;
 
 namespace CreateTask.TaskManagers.Trello
 {
   internal class ConfigFileReader
   {
-    private XDocument confDoc;
-    private string configFile;
+    private readonly XDocument confDoc;
+    private readonly string configFile;
 
     public ConfigFileReader(string configFile) {
-      confDoc = XDocument.Load(configFile);
-      this.configFile = configFile;
+      if (File.Exists(configFile + ".user")) {
+        this.configFile = configFile + ".user";
+      }
+      else {
+        this.configFile = configFile;
+      }
+      confDoc = XDocument.Load(this.configFile);
     }
 
     public string IdList {
-      get {return confDoc.Root.Element("idList").Value; }
+      get { return confDoc.Root.Element("idList").Value; }
     }
 
     public string Key {

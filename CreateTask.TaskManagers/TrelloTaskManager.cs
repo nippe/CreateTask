@@ -27,7 +27,7 @@ namespace CreateTask.TaskManagers
         string newToken = null;
         if (
           InputBox.Show("Token not valid", "Allow the new token in your webbrowser and paste it in here.", ref newToken) ==
-          DialogResult.Yes) {
+          DialogResult.OK) {
           TrelloConfig.WriteToken(newToken);
           createResponse = CreateCard(taskData, client);
         }
@@ -38,18 +38,13 @@ namespace CreateTask.TaskManagers
       }
 
       TrelloCard card = createResponse.Data;
+      string label = "orange"; //Un-prioratized
+      var labelResult = AddLabelToCard(card, label, client);
 
-      IRestRequest addLabelsRequest = new RestRequest(
-        string.Format("{0}/{1}{2}",
-                      TrelloConfig.Resourses.Cards,
-                      card.id,
-                      TrelloConfig.Resourses.Labels)
-        );
-      addLabelsRequest.Method = Method.POST;
-      addLabelsRequest.AddParameter(TrelloConfig.ParameterNames.Value, "orange");
-      SetKeyAndTokenParametersOnRequest(addLabelsRequest);
-      IRestResponse labelResult = client.Execute(addLabelsRequest);
-      //TODO: Add lables from taskData.Tags
+      foreach (string tag in taskData.Tags) {
+        string labelColor = TrelloLabelToColorMapper.MapColor(tag);
+        AddLabelToCard(card, labelColor, client);
+      }
 
       IRestRequest dueDateReq = new RestRequest(string.Format("{0}/{1}/due", TrelloConfig.Resourses.Cards, card.id));
       dueDateReq.Method = Method.PUT;
@@ -59,6 +54,21 @@ namespace CreateTask.TaskManagers
       IRestResponse dueResp = client.Execute(dueDateReq);
 
       //TODO: Verify status else throw exception
+    }
+
+    private IRestResponse AddLabelToCard(TrelloCard card, string label, RestClient client) {
+      IRestRequest addLabelsRequest = new RestRequest(
+        string.Format("{0}/{1}{2}",
+                      TrelloConfig.Resourses.Cards,
+                      card.id,
+                      TrelloConfig.Resourses.Labels)
+        );
+
+      addLabelsRequest.Method = Method.POST;
+      addLabelsRequest.AddParameter(TrelloConfig.ParameterNames.Value, label);
+      SetKeyAndTokenParametersOnRequest(addLabelsRequest);
+      IRestResponse labelResult = client.Execute(addLabelsRequest);
+      return labelResult;
     }
 
     #endregion

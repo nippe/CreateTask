@@ -2,7 +2,7 @@
 {
   internal class TrelloConfig
   {
-    private static string ConfigFile = "TrelloConfig.xml.user";
+    private static string ConfigFile = "TrelloConfig.xml";
 
     internal static string TrelloBaseUrl = "https://api.trello.com/1";
 
