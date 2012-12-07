@@ -1,4 +1,7 @@
-﻿using System.Globalization;
+﻿using System.Diagnostics;
+using System.Globalization;
+using System.Net;
+using System.Windows.Forms;
 using CreateTask.Entities;
 using CreateTask.Interfaces;
 using CreateTask.TaskManagers.Trello;
@@ -13,13 +16,27 @@ namespace CreateTask.TaskManagers
     public void CreateTask(ITaskDTO taskData) {
       var client = new RestClient("https://api.trello.com/1");
 
-      IRestRequest createCardRequest = new RestRequest(TrelloConfig.Resourses.Cards);
-      createCardRequest.Method = Method.POST;
-      createCardRequest.AddParameter(TrelloConfig.ParameterNames.Name, taskData.Subject);
-      createCardRequest.AddParameter(TrelloConfig.ParameterNames.IdList, TrelloConfig.ListId);
-      SetKeyAndTokenParametersOnRequest(createCardRequest);
+      IRestResponse<TrelloCard> createResponse = CreateCard(taskData, client);
 
-      IRestResponse<TrelloCard> createResponse = client.Execute<TrelloCard>(createCardRequest);
+      if (createResponse.StatusCode == HttpStatusCode.Unauthorized) {
+        Process.Start(
+          string.Format(
+            "https://trello.com/1/authorize?key={0}&name=CreateTask&expiration=1day&response_type=token&scope=read,write",
+            TrelloConfig.Key));
+
+        string newToken = null;
+        if (
+          InputBox.Show("Token not valid", "Allow the new token in your webbrowser and paste it in here.", ref newToken) ==
+          DialogResult.Yes) {
+          TrelloConfig.WriteToken(newToken);
+          createResponse = CreateCard(taskData, client);
+        }
+        else {
+          MessageBox.Show("Exiting CreateTask", "Exiting", MessageBoxButtons.OK, MessageBoxIcon.Information);
+          return;
+        }
+      }
+
       TrelloCard card = createResponse.Data;
 
       IRestRequest addLabelsRequest = new RestRequest(
@@ -32,6 +49,7 @@ namespace CreateTask.TaskManagers
       addLabelsRequest.AddParameter(TrelloConfig.ParameterNames.Value, "orange");
       SetKeyAndTokenParametersOnRequest(addLabelsRequest);
       IRestResponse labelResult = client.Execute(addLabelsRequest);
+      //TODO: Add lables from taskData.Tags
 
       IRestRequest dueDateReq = new RestRequest(string.Format("{0}/{1}/due", TrelloConfig.Resourses.Cards, card.id));
       dueDateReq.Method = Method.PUT;
@@ -44,6 +62,17 @@ namespace CreateTask.TaskManagers
     }
 
     #endregion
+
+    private IRestResponse<TrelloCard> CreateCard(ITaskDTO taskData, RestClient client) {
+      IRestRequest createCardRequest = new RestRequest(TrelloConfig.Resourses.Cards);
+      createCardRequest.Method = Method.POST;
+      createCardRequest.AddParameter(TrelloConfig.ParameterNames.Name, taskData.Subject);
+      createCardRequest.AddParameter(TrelloConfig.ParameterNames.IdList, TrelloConfig.ListId);
+      SetKeyAndTokenParametersOnRequest(createCardRequest);
+
+      IRestResponse<TrelloCard> createResponse = client.Execute<TrelloCard>(createCardRequest);
+      return createResponse;
+    }
 
     private void SetKeyAndTokenParametersOnRequest(IRestRequest request) {
       request.AddParameter(TrelloConfig.ParameterNames.Key, TrelloConfig.Key);

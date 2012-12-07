@@ -43,5 +43,9 @@
     }
 
     #endregion
+
+    public static void WriteToken(string newToken) {
+      new ConfigFileReader(ConfigFile).WriteToken(newToken);
+    }
   }
 }
