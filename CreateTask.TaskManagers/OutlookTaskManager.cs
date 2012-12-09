@@ -1,12 +1,12 @@
-﻿using System.Reflection;
+using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 using CreateTask.Entities;
 using CreateTask.Interfaces;
 using Microsoft.Office.Interop.Outlook;
 using Application = Microsoft.Office.Interop.Outlook.Application;
-using System.Linq;
 
-namespace CreateTask.Logic
+namespace CreateTask.TaskManagers
 {
   public class OutlookTaskManager : ITaskManager
   {
