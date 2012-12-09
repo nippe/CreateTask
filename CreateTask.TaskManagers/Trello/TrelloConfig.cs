@@ -2,13 +2,23 @@
 {
   internal class TrelloConfig
   {
+    private static ConfigFileReader _configFileReader = null;
     private static string ConfigFile = "TrelloConfig.xml";
 
     internal static string TrelloBaseUrl = "https://api.trello.com/1";
 
     public static string ListId {
       get {
-        return new ConfigFileReader(ConfigFile).IdList;
+        return LocalConfigFileReader.IdList;
+      }
+    }
+
+    protected static ConfigFileReader LocalConfigFileReader {
+      get { 
+        if(_configFileReader == null) {
+          _configFileReader = new ConfigFileReader(ConfigFile);
+        }
+        return _configFileReader;
       }
     }
 
