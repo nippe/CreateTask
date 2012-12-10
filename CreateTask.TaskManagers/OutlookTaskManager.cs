@@ -5,22 +5,25 @@ using CreateTask.Entities;
 using CreateTask.Interfaces;
 using Microsoft.Office.Interop.Outlook;
 using Application = Microsoft.Office.Interop.Outlook.Application;
+using Exception = System.Exception;
 
 namespace CreateTask.TaskManagers
 {
   public class OutlookTaskManager : ITaskManager
   {
+    #region ITaskManager Members
+
     public void CreateTask(ITaskDTO taskData) {
       NameSpace ns = null;
 
       try {
-        Application application = new Application();
+        var application = new Application();
         ns = application.GetNamespace("mapi");
         ns.Logon("Outlook", Missing.Value, false, true);
 
-        TaskItem task = application.CreateItem(OlItemType.olTaskItem) as TaskItem;
+        var task = application.CreateItem(OlItemType.olTaskItem) as TaskItem;
 
-        if(task != null) {
+        if (task != null) {
           task.Assign();
           task.Subject = taskData.Subject;
           task.DueDate = taskData.DueDate;
@@ -28,7 +31,8 @@ namespace CreateTask.TaskManagers
           task.Categories = string.Join(";", taskData.Tags.ToArray());
           task.Save();
         }
-      } catch(System.Exception ex) {
+      }
+      catch (Exception ex) {
         MessageBox.Show(ex.Message);
       }
       finally {
@@ -37,5 +41,15 @@ namespace CreateTask.TaskManagers
         }
       }
     }
+
+    public string CommandLineSwitch {
+      get { return "*"; }
+    }
+
+    public string FriendlyName {
+      get { return "Microsoft Outlook Task Manager"; }
+    }
+
+    #endregion
   }
 }

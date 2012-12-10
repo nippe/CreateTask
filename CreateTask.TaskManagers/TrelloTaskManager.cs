@@ -39,7 +39,7 @@ namespace CreateTask.TaskManagers
 
       TrelloCard card = createResponse.Data;
       string label = "orange"; //Un-prioratized
-      var labelResult = AddLabelToCard(card, label, client);
+      IRestResponse labelResult = AddLabelToCard(card, label, client);
 
       foreach (string tag in taskData.Tags) {
         string labelColor = TrelloLabelToColorMapper.MapColor(tag);
@@ -56,6 +56,16 @@ namespace CreateTask.TaskManagers
       //TODO: Verify status else throw exception
     }
 
+    public string CommandLineSwitch {
+      get { return "-trello"; }
+    }
+
+    public string FriendlyName {
+      get { return "Trello Task Manager"; }
+    }
+
+    #endregion
+
     private IRestResponse AddLabelToCard(TrelloCard card, string label, RestClient client) {
       IRestRequest addLabelsRequest = new RestRequest(
         string.Format("{0}/{1}{2}",
@@ -70,8 +80,6 @@ namespace CreateTask.TaskManagers
       IRestResponse labelResult = client.Execute(addLabelsRequest);
       return labelResult;
     }
-
-    #endregion
 
     private IRestResponse<TrelloCard> CreateCard(ITaskDTO taskData, RestClient client) {
       IRestRequest createCardRequest = new RestRequest(TrelloConfig.Resourses.Cards);

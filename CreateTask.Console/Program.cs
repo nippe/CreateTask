@@ -63,13 +63,26 @@ namespace CreateTask
       sb.AppendLine("\t-fr\t\t - Friday");
       sb.AppendLine("\t-sa/-lö\t\t - Saturday");
       sb.AppendLine("\t-su/-sö\t\t - Sunday");
+
+      sb.AppendLine("\t-jan\t\t - January");
+      sb.AppendLine("\t-feb\t\t - February");
+      sb.AppendLine("\t-mar\t\t - March");
+      sb.AppendLine("\t-apr\t\t - April");
+      sb.AppendLine("\t-may/-maj\t - May");
+      sb.AppendLine("\t-jun\t\t - June");
+      sb.AppendLine("\t-jul\t\t - July");
+      sb.AppendLine("\t-aug\t\t - August");
+      sb.AppendLine("\t-sep\t\t - September");
+      sb.AppendLine("\t-oct/-okt\t\t - October");
+      sb.AppendLine("\t-nov\t\t - November");
+      sb.AppendLine("\t-dec\t\t - December");
       
 
       sb.AppendLine("");
       sb.AppendLine("Available Task Managers:");
       foreach (ITaskManager taskManager in taskManagers) {
         sb.Append("\t");
-        sb.AppendLine(taskManager.GetType().ToString());
+        sb.AppendLine(taskManager.FriendlyName);
       }
       MessageBox.Show(sb.ToString());
     }
