@@ -32,19 +32,8 @@ namespace CreateTask
       ITaskDTO taskDto = taskBuilder.CreateTask();
       bool taskCreated = false;
 
-
       ITaskManager taskManagerToRun = ProviderMatcher.GetMatchingTaskManager(args, taskManagers);
-
-      foreach (ITaskManager taskManager in taskManagers) {
-        if(ProviderMatcher.IsMatch(args, taskManager.CommandLineSwitch)) {
-          taskManager.CreateTask(taskDto);
-          taskCreated = true;
-        }
-        else if(taskManager.CommandLineSwitch == "*" && taskCreated == false) {
-          taskManager.CreateTask(taskDto);          
-        }
-      }
-      
+      taskManagerToRun.CreateTask(taskDto);
     }
 
     private static void ShowUsage(IEnumerable<ITaskManager> taskManagers) {

@@ -7,16 +7,6 @@ namespace CreateTask.Logic
 {
   public class ProviderMatcher
   {
-    public static bool IsMatch(string[] args, string pattern) {
-      foreach (string option in args) {
-        if(string.Compare(option, pattern, StringComparison.OrdinalIgnoreCase)==0) {
-          return true;
-        }
-      }
-      return false;
-    }
-
-
     public static ITaskManager GetMatchingTaskManager(string[] args, IList<ITaskManager> taskManagers) {
       foreach (string option in args) {
         ITaskManager matchingTaskManager =

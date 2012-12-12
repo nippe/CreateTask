@@ -34,32 +34,7 @@ namespace CreateTask.Console.UnitTests.Logic
     }
 
 
-    [Fact]
-    public void IsMatch_Trello_ShouldReturnTrue() {
-      string[] args = new string[] { "Eat", "my", "kittens", "-tm", "-trello", "-p" };
-      string trelloPattern = "-trello";
-
-      Assert.True( ProviderMatcher.IsMatch(args, trelloPattern));
-    }
-
-    [Fact]
-    public void IsMatch_Rtm_ShouldReturnTrue() {
-      string[] args = new string[] { "Eat", "my", "kittens", "-tm", "-rtm", "-p" };
-      string pattern = "-rtm";
-
-      Assert.True(ProviderMatcher.IsMatch(args, pattern));
-    }
-
-    [Fact]
-    public void IsMatch_TrelloNotInArguments_ShouldReturnFalse() {
-      string[] args = new string[] { "Eat", "my", "kittens", "-tm", "-rtm", "-p" };
-      string pattern = "-trello";
-
-      Assert.False(ProviderMatcher.IsMatch(args, pattern));
-    }
-
-
-
+  
     [Fact]
     public void GetMatchingProvider_DefaultManager_IsSelected_WhenNotMatch() {
       string[] args = new string[] { "Eat", "my", "kittens", "-tm", "-rtm", "-p" };
