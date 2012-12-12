@@ -30,19 +30,21 @@ namespace CreateTask
 
       ITaskBuilder taskBuilder = new TaskBuilder(args, argumentParser, optionParser);
       ITaskDTO taskDto = taskBuilder.CreateTask();
+      bool taskCreated = false;
+
+
+      ITaskManager taskManagerToRun = ProviderMatcher.GetMatchingTaskManager(args, taskManagers);
 
       foreach (ITaskManager taskManager in taskManagers) {
-        if(taskManager.GetType().ToString().Contains("Trello")) {
-          if( argumentParser.GetOptions(args).Contains("-trello")) {
-            taskManager.CreateTask(taskDto);                       
-          }
+        if(ProviderMatcher.IsMatch(args, taskManager.CommandLineSwitch)) {
+          taskManager.CreateTask(taskDto);
+          taskCreated = true;
         }
-        else {
-          if (!argumentParser.GetOptions(args).Contains("-trello")) {
-            taskManager.CreateTask(taskDto);
-          }
+        else if(taskManager.CommandLineSwitch == "*" && taskCreated == false) {
+          taskManager.CreateTask(taskDto);          
         }
       }
+      
     }
 
     private static void ShowUsage(IEnumerable<ITaskManager> taskManagers) {

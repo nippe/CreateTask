@@ -50,6 +50,8 @@ namespace CreateTask.TaskManagers
       get { return "Microsoft Outlook Task Manager"; }
     }
 
+    public int Order { get { return 100; } }
+
     #endregion
   }
 }

@@ -7,5 +7,6 @@ namespace CreateTask.Interfaces
     void CreateTask(ITaskDTO taskData);
     string CommandLineSwitch { get; }
     string FriendlyName { get; }
+    int Order { get; }
   }
 }

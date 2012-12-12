@@ -64,6 +64,10 @@ namespace CreateTask.TaskManagers
       get { return "Trello Task Manager"; }
     }
 
+    public int Order {
+      get { return 10; }
+    }
+
     #endregion
 
     private IRestResponse AddLabelToCard(TrelloCard card, string label, RestClient client) {

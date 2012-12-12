@@ -63,6 +63,7 @@
     <Compile Include="Logic\Constants.cs" />
     <Compile Include="Logic\DateHelper.cs" />
     <Compile Include="Logic\OptionsParser.cs" />
+    <Compile Include="Logic\ProviderMatcher.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
