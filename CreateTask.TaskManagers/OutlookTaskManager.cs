@@ -29,6 +29,7 @@ namespace CreateTask.TaskManagers
           task.DueDate = taskData.DueDate;
           task.StartDate = taskData.DueDate;
           task.Categories = string.Join(";", taskData.Tags.ToArray());
+          task.Importance = GetOutlookPriority(taskData.Importance);
           task.Save();
         }
       }
@@ -42,6 +43,7 @@ namespace CreateTask.TaskManagers
       }
     }
 
+
     public string CommandLineSwitch {
       get { return "*"; }
     }
@@ -50,8 +52,21 @@ namespace CreateTask.TaskManagers
       get { return "Microsoft Outlook Task Manager"; }
     }
 
-    public int Order { get { return 100; } }
+    public int Order {
+      get { return 100; }
+    }
 
     #endregion
+
+    private OlImportance GetOutlookPriority(TaskPriority importance) {
+      switch (importance) {
+        case TaskPriority.High:
+          return OlImportance.olImportanceHigh;
+        case TaskPriority.Low:
+          return OlImportance.olImportanceLow;
+        default:
+          return OlImportance.olImportanceNormal;
+      }
+    }
   }
 }

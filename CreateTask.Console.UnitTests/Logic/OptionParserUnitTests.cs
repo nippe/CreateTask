@@ -348,5 +348,28 @@ namespace CreateTask.Console.UnitTests.Logic
 
 
     }
+
+    public class ImportanceTests
+    {
+      [Fact] 
+      public void Importance_Hp_ShouldBeParsedAsHighImportance() {
+        OptionsParser op = new OptionsParser(new List<string> { "-hp" });
+        Assert.Equal(TaskPriority.High, op.Importance);
+      }
+
+      [Fact]
+      public void Importance_Lp_ShouldBeParsedAsLowImportance()
+      {
+        OptionsParser op = new OptionsParser(new List<string> { "-lp" });
+        Assert.Equal(TaskPriority.Low, op.Importance);
+      }
+
+      [Fact]
+      public void Importance_Nothing_ShouldBeParsedAsNormalImportance()
+      {
+        OptionsParser op = new OptionsParser(new List<string> { "" });
+        Assert.Equal(TaskPriority.Normal, op.Importance);
+      }
+    }
   }
 }

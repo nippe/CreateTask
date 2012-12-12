@@ -6,12 +6,13 @@ namespace CreateTask.Logic
 {
   public class OptionsParser : IOptionsParser
   {
-    private IList<string> _options;
-    private DateTime _dueDate = DateTime.Today;
-    private DateTime _currentDate = DateTime.Today;
     private readonly DateHelper _dateHelper;
-    private IList<string> _tags = new List<string>();
-     
+    private readonly IList<string> _options;
+    private readonly IList<string> _tags = new List<string>();
+    private DateTime _currentDate = DateTime.Today;
+    private DateTime _dueDate = DateTime.Today;
+    private TaskPriority _importance = TaskPriority.Normal;
+
     public OptionsParser(IList<string> options) : this(options, DateTime.Today) {
     }
 
@@ -23,80 +24,86 @@ namespace CreateTask.Logic
       ParseOptions();
     }
 
+    public TaskPriority Importance {
+      get { return _importance; }
+    }
+
+    #region IOptionsParser Members
+
+    public DateTime DueDate {
+      get { return _dueDate; }
+    }
+
+    public IList<string> Tags {
+      get { return _tags; }
+    }
+
+    #endregion
+
     private void ParseOptions() {
       ParseDueDate();
       ParseTags();
+      ParseImportance();
     }
 
     private void ParseTags() {
-      if(_options.Contains("-p")) {
+      if (_options.Contains("-p")) {
         _tags.Add(Constants.TagNames.Personal);
       }
 
-      if(_options.Contains("-b") || _options.Contains("-w")) {
+      if (_options.Contains("-b") || _options.Contains("-w")) {
         _tags.Add(Constants.TagNames.Business);
       }
 
-      if(_options.Contains("-f")) {
+      if (_options.Contains("-f")) {
         _tags.Add(Constants.TagNames.Family);
       }
 
-      if(_options.Contains("-h")) {
+      if (_options.Contains("-h")) {
         _tags.Add(Constants.TagNames.House);
       }
 
-      if(_options.Contains("-i")) {
+      if (_options.Contains("-i")) {
         _tags.Add(Constants.TagNames.Information);
       }
 
-      if(_options.Contains("-t")) {
+      if (_options.Contains("-t")) {
         _tags.Add(Constants.TagNames.TravelTime);
       }
-
-
-
-
-
     }
 
     private void ParseDueDate() {
-      if(_options.Contains("-tm")) {
+      if (_options.Contains("-tm")) {
         _dueDate = DateTime.Today.AddDays(1);
       }
-      else if(_options.Contains("-tw")) {
+      else if (_options.Contains("-tw")) {
         _dueDate = _dateHelper.GetLastDateOfWeek();
       }
-      else if(_options.Contains("-nw")) {
+      else if (_options.Contains("-nw")) {
         _dueDate = _dateHelper.GetLastDayOfNextWeek();
       }
-      else if(_options.Contains("-1w")) {
+      else if (_options.Contains("-1w")) {
         _dueDate = _currentDate.AddDays(7);
       }
       else if (_options.Contains("-mo") || _options.Contains("-m")) {
         _dueDate = _dateHelper.GetNextMonday();
       }
-      else if (_options.Contains("-tu") || _options.Contains("-ti"))
-      {
+      else if (_options.Contains("-tu") || _options.Contains("-ti")) {
         _dueDate = _dateHelper.GetNextTuesday();
       }
-      else if (_options.Contains("-we") || _options.Contains("-on"))
-      {
+      else if (_options.Contains("-we") || _options.Contains("-on")) {
         _dueDate = _dateHelper.GetNextWednsday();
       }
-      else if (_options.Contains("-to") || _options.Contains("-th"))
-      {
+      else if (_options.Contains("-to") || _options.Contains("-th")) {
         _dueDate = _dateHelper.GetNextThursday();
       }
-      else if (_options.Contains("-fr"))
-      {
+      else if (_options.Contains("-fr")) {
         _dueDate = _dateHelper.GetNextFriday();
       }
-      else if (_options.Contains("-sa") || _options.Contains("-lö"))
-      {
+      else if (_options.Contains("-sa") || _options.Contains("-lö")) {
         _dueDate = _dateHelper.GetNextSaturday();
-      }      
-      else if (_options.Contains("-su") || _options.Contains("-sö"))
-      {
+      }
+      else if (_options.Contains("-su") || _options.Contains("-sö")) {
         _dueDate = _dateHelper.GetNextSunday();
       }
       else if (_options.Contains("-jan")) {
@@ -137,11 +144,19 @@ namespace CreateTask.Logic
       }
     }
 
+    private void ParseImportance() {
+      if (_options.Contains("-hp")) {
+        _importance = TaskPriority.High;
+      }
+      else if (_options.Contains("-lp")) {
+        _importance = TaskPriority.Low;
+      }
+    }
+
     private DateTime GetFirstDayInGivenMonth(Month month) {
       int year = _currentDate.Year;
-      
-      if (_currentDate.Month < (int)month)
-      {
+
+      if (_currentDate.Month < (int) month) {
         //this year
       }
       else {
@@ -149,20 +164,12 @@ namespace CreateTask.Logic
         year++;
       }
 
-      return new DateTime(year, (int)month, 1);
-    }
-
-
-    public DateTime DueDate {
-      get { return _dueDate; }
-    }
-
-    public IList<string> Tags {
-      get { return _tags; }
+      return new DateTime(year, (int) month, 1);
     }
   }
 
-  public enum Month{
+  public enum Month
+  {
     January = 1,
     February = 2,
     March = 3,
@@ -173,7 +180,7 @@ namespace CreateTask.Logic
     August = 8,
     September = 9,
     October = 10,
-    November= 11,
+    November = 11,
     December = 12
   }
 }

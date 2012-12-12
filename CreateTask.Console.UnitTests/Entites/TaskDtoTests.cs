@@ -17,10 +17,12 @@ namespace CreateTask.Console.UnitTests.Entites
       t.Subject = "Go do X";
       t.StartDate = startDate;
       t.DueDate = dueDate;
+      t.Importance = TaskPriority.Normal;
 
       Assert.Equal("Go do X", t.Subject);
       Assert.Equal(startDate, t.StartDate);
       Assert.Equal(dueDate, t.DueDate);
+      Assert.Equal(TaskPriority.Normal, t.Importance);
     }
 
   }
