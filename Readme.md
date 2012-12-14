@@ -19,5 +19,8 @@ In short:
 
 Creates a task in Microsoft Outllook with the subject "Call Phil about haloween party" and due date tomorrow.
 
+License
+----------
+WTFPL
 
 
