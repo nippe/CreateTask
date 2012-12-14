@@ -15,7 +15,7 @@ namespace CreateTask.Logic
     }
 
     public DateTime CurrentDate {
-      get { return currentDate;}
+      get { return currentDate; }
     }
 
     public DateTime GetLastDayOfNextWeek() {
@@ -23,11 +23,11 @@ namespace CreateTask.Logic
     }
 
     public DateTime GetLastDateOfWeek() {
-      return currentDate.AddDays(7 - (int)(currentDate.DayOfWeek));
+      return currentDate.AddDays(7 - (int) (currentDate.DayOfWeek));
     }
 
     public DateTime GetNextMonday() {
-      return currentDate.AddDays( NumberOfDayToNext(DayOfWeek.Monday));
+      return currentDate.AddDays(NumberOfDayToNext(DayOfWeek.Monday));
     }
 
     public DateTime GetNextTuesday() {
@@ -38,40 +38,29 @@ namespace CreateTask.Logic
       return currentDate.AddDays(NumberOfDayToNext(DayOfWeek.Wednesday));
     }
 
-    public DateTime GetNextThursday()
-    {
+    public DateTime GetNextThursday() {
       return currentDate.AddDays(NumberOfDayToNext(DayOfWeek.Thursday));
     }
 
-    public DateTime GetNextFriday()
-    {
+    public DateTime GetNextFriday() {
       return currentDate.AddDays(NumberOfDayToNext(DayOfWeek.Friday));
     }
 
-    public DateTime GetNextSaturday()
-    {
+    public DateTime GetNextSaturday() {
       return currentDate.AddDays(NumberOfDayToNext(DayOfWeek.Saturday));
     }
 
-    public DateTime GetNextSunday()
-    {
+    public DateTime GetNextSunday() {
       return currentDate.AddDays(NumberOfDayToNext(DayOfWeek.Sunday));
     }
 
 
-
-
-    private double NumberOfDayToNext(DayOfWeek dayOfWeek)
-    {
+    private double NumberOfDayToNext(DayOfWeek dayOfWeek) {
       int faktor = 7;
-      if (currentDate.DayOfWeek < dayOfWeek)
-      {
+      if (currentDate.DayOfWeek < dayOfWeek) {
         faktor = 0;
       }
-      return (faktor - (double)currentDate.DayOfWeek + (double)dayOfWeek);
+      return (faktor - (double) currentDate.DayOfWeek + (double) dayOfWeek);
     }
-
-
-    
   }
 }

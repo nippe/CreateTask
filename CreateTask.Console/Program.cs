@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Text;
 using System.Windows.Forms;
 using CreateTask.Config;
@@ -11,22 +10,21 @@ using StructureMap;
 
 namespace CreateTask
 {
-  class Program
+  internal class Program
   {
-    static void Main(string[] args)
-    {
+    private static void Main(string[] args) {
       ContainerBootstrapper.BootstrapStructureMap(args);
 
       IContainer container = ObjectFactory.Container;
-      var taskManagers = container.GetAllInstances<ITaskManager>();
+      IList<ITaskManager> taskManagers = container.GetAllInstances<ITaskManager>();
 
-      if(ShouldUsageBeShown(args)) {
+      if (ShouldUsageBeShown(args)) {
         ShowUsage(taskManagers);
         return;
       }
 
-      IArgumentParser argumentParser = ObjectFactory.GetInstance<IArgumentParser>();
-      IOptionsParser optionParser = ObjectFactory.GetInstance<IOptionsParser>();
+      var argumentParser = ObjectFactory.GetInstance<IArgumentParser>();
+      var optionParser = ObjectFactory.GetInstance<IOptionsParser>();
 
       ITaskBuilder taskBuilder = new TaskBuilder(args, argumentParser, optionParser);
       ITaskDTO taskDto = taskBuilder.CreateTask();
@@ -37,7 +35,7 @@ namespace CreateTask
     }
 
     private static void ShowUsage(IEnumerable<ITaskManager> taskManagers) {
-      StringBuilder sb = new StringBuilder();
+      var sb = new StringBuilder();
 
       sb.AppendLine("ct.exe <subject> [options]");
       sb.AppendLine();
@@ -67,7 +65,7 @@ namespace CreateTask
       sb.AppendLine("\t-oct/-okt\t\t - October");
       sb.AppendLine("\t-nov\t\t - November");
       sb.AppendLine("\t-dec\t\t - December");
-      
+
 
       sb.AppendLine("");
       sb.AppendLine("Available Task Managers:");
@@ -80,10 +78,10 @@ namespace CreateTask
 
     private static bool ShouldUsageBeShown(string[] args) {
       foreach (string s in args) {
-        if(string.Compare(s, "-help", StringComparison.OrdinalIgnoreCase) == 0 ||
-          string.Compare(s, "--help", StringComparison.OrdinalIgnoreCase) == 0 ||
-          string.Compare(s, "-?", StringComparison.OrdinalIgnoreCase) == 0 ||
-          string.Compare(s, "/?", StringComparison.OrdinalIgnoreCase) == 0) {
+        if (string.Compare(s, "-help", StringComparison.OrdinalIgnoreCase) == 0 ||
+            string.Compare(s, "--help", StringComparison.OrdinalIgnoreCase) == 0 ||
+            string.Compare(s, "-?", StringComparison.OrdinalIgnoreCase) == 0 ||
+            string.Compare(s, "/?", StringComparison.OrdinalIgnoreCase) == 0) {
           return true;
         }
       }

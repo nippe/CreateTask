@@ -14,9 +14,9 @@ namespace CreateTask.Entities
 
   public class TaskDTO : ITaskDTO
   {
-    public TaskPriority Importance { get; set; }
-
     #region ITaskDTO Members
+
+    public TaskPriority Importance { get; set; }
 
     public string Subject { get; set; }
     public DateTime StartDate { get; set; }
@@ -33,4 +33,3 @@ public enum TaskPriority
   Normal,
   High
 }
-

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CreateTask.Entities;
 using CreateTask.Interfaces;
 using Moq;
@@ -16,7 +13,6 @@ namespace CreateTask.Console.UnitTests.Logic
 
     [Fact]
     public void CreateTask_ReturnsCorrect_DueDateAndSubjectAndTags() {
-
       string[] args = "Köp vin till festen -p -tm".Split(' ');
 
       var argumentsParserMock = new Mock<IArgumentParser>();
@@ -35,6 +31,5 @@ namespace CreateTask.Console.UnitTests.Logic
       argumentsParserMock.VerifyAll();
       optionsParserMock.VerifyAll();
     }
-
   }
 }

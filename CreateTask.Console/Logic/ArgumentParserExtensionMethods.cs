@@ -6,7 +6,7 @@ namespace CreateTask.Logic
   {
     public static bool NotPrefixed(this string value) {
       IList<string> prefixCharacters = new List<string> {"@", "-"};
-      return prefixCharacters.Contains( value.Substring(0, 1)) == false;
+      return prefixCharacters.Contains(value.Substring(0, 1)) == false;
     }
   }
 }

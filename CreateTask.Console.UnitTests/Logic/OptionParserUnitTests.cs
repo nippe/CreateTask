@@ -7,6 +7,63 @@ namespace CreateTask.Console.UnitTests.Logic
 {
   public class OptionParserUnitTests
   {
+    #region Nested type: CategoriesTests
+
+    public class CategoriesTests
+    {
+      [Fact]
+      public void P_flag_Should_Set_Personal_CategoryLabel() {
+        var op = new OptionsParser(new List<string> {"-p"});
+        Assert.True(op.Tags.Contains("Personal"));
+      }
+
+      [Fact]
+      public void W_flag_Should_Set_Business_CategoryLabel() {
+        var op = new OptionsParser(new List<string> {"-w"});
+        Assert.True(op.Tags.Contains("Business"));
+      }
+
+      [Fact]
+      public void B_flag_Should_Set_Business_CategoryLabel() {
+        var op = new OptionsParser(new List<string> {"-b"});
+        Assert.True(op.Tags.Contains("Business"));
+      }
+
+      [Fact]
+      public void T_flag_Should_Set_Travel_CategoryLabel() {
+        var op = new OptionsParser(new List<string> {"-t"});
+        Assert.True(op.Tags.Contains("Travel"));
+      }
+
+      [Fact]
+      public void I_flag_Should_Set_Info_CategoryLabel() {
+        var op = new OptionsParser(new List<string> {"-i"});
+        Assert.True(op.Tags.Contains("Info"));
+      }
+
+      [Fact]
+      public void F_flag_Should_Set_Family_CategoryLabel() {
+        var op = new OptionsParser(new List<string> {"-f"});
+        Assert.True(op.Tags.Contains("Family"));
+      }
+
+      [Fact]
+      public void H_flag_Should_Set_House_CategoryLabel() {
+        var op = new OptionsParser(new List<string> {"-h"});
+        Assert.True(op.Tags.Contains("Hus"));
+      }
+
+      [Fact]
+      public void Multiple_flags_Should_Set_ManyCategoryLabels() {
+        var op = new OptionsParser(new List<string> {"-h", "-t", "-b"});
+        Assert.True(op.Tags.Contains("Hus"));
+        Assert.True(op.Tags.Contains("Business"));
+        Assert.True(op.Tags.Contains("Travel"));
+      }
+    }
+
+    #endregion
+
     #region Nested type: DateTests
 
     public class DateTests
@@ -147,19 +204,17 @@ namespace CreateTask.Console.UnitTests.Logic
       }
 
       [Fact]
-      public void SuFlag_ShouldReturn_ComingMSunday()
-      {
+      public void SuFlag_ShouldReturn_ComingMSunday() {
         DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
-        var optionsParser = new OptionsParser(new List<string> { "-su" }, dateOfExecuting);
+        var optionsParser = new OptionsParser(new List<string> {"-su"}, dateOfExecuting);
 
         Assert.Equal(DateTime.Parse("2012-11-18"), optionsParser.DueDate);
       }
 
       [Fact]
-      public void SöFlag_ShouldReturn_ComingMSunday()
-      {
+      public void SöFlag_ShouldReturn_ComingMSunday() {
         DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
-        var optionsParser = new OptionsParser(new List<string> { "-sö" }, dateOfExecuting);
+        var optionsParser = new OptionsParser(new List<string> {"-sö"}, dateOfExecuting);
 
         Assert.Equal(DateTime.Parse("2012-11-18"), optionsParser.DueDate);
       }
@@ -168,15 +223,15 @@ namespace CreateTask.Console.UnitTests.Logic
       [Fact]
       public void Jan_InBeginning_Should_Return_FirstDayInJanuary() {
         DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
-        var optionsParser = new OptionsParser(new List<string> { "-jan" }, dateOfExecuting);
+        var optionsParser = new OptionsParser(new List<string> {"-jan"}, dateOfExecuting);
 
         Assert.Equal(DateTime.Parse("2013-01-01"), optionsParser.DueDate);
       }
-      
+
       [Fact]
       public void Feb_InBeginning_Should_Return_FirstDayInFebruary() {
         DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
-        var optionsParser = new OptionsParser(new List<string> { "-feb" }, dateOfExecuting);
+        var optionsParser = new OptionsParser(new List<string> {"-feb"}, dateOfExecuting);
 
         Assert.Equal(DateTime.Parse("2013-02-01"), optionsParser.DueDate);
       }
@@ -184,7 +239,7 @@ namespace CreateTask.Console.UnitTests.Logic
       [Fact]
       public void Mar_InBeginning_Should_Return_FirstDayInMars() {
         DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
-        var optionsParser = new OptionsParser(new List<string> { "-mar" }, dateOfExecuting);
+        var optionsParser = new OptionsParser(new List<string> {"-mar"}, dateOfExecuting);
 
         Assert.Equal(DateTime.Parse("2013-03-01"), optionsParser.DueDate);
       }
@@ -192,7 +247,7 @@ namespace CreateTask.Console.UnitTests.Logic
       [Fact]
       public void Apr_InBeginning_Should_Return_FirstDayInApril() {
         DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
-        var optionsParser = new OptionsParser(new List<string> { "-apr" }, dateOfExecuting);
+        var optionsParser = new OptionsParser(new List<string> {"-apr"}, dateOfExecuting);
 
         Assert.Equal(DateTime.Parse("2013-04-01"), optionsParser.DueDate);
       }
@@ -200,7 +255,7 @@ namespace CreateTask.Console.UnitTests.Logic
       [Fact]
       public void May_InBeginning_Should_Return_FirstDayInMay() {
         DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
-        var optionsParser = new OptionsParser(new List<string> { "-may" }, dateOfExecuting);
+        var optionsParser = new OptionsParser(new List<string> {"-may"}, dateOfExecuting);
 
         Assert.Equal(DateTime.Parse("2013-05-01"), optionsParser.DueDate);
       }
@@ -209,7 +264,7 @@ namespace CreateTask.Console.UnitTests.Logic
       [Fact]
       public void Maj_InSwedish_InBeginning_Should_Return_FirstDayInMay() {
         DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
-        var optionsParser = new OptionsParser(new List<string> { "-maj" }, dateOfExecuting);
+        var optionsParser = new OptionsParser(new List<string> {"-maj"}, dateOfExecuting);
 
         Assert.Equal(DateTime.Parse("2013-05-01"), optionsParser.DueDate);
       }
@@ -217,7 +272,7 @@ namespace CreateTask.Console.UnitTests.Logic
       [Fact]
       public void Jun_InBeginning_Should_Return_FirstDayInJune() {
         DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
-        var optionsParser = new OptionsParser(new List<string> { "-jun" }, dateOfExecuting);
+        var optionsParser = new OptionsParser(new List<string> {"-jun"}, dateOfExecuting);
 
         Assert.Equal(DateTime.Parse("2013-06-01"), optionsParser.DueDate);
       }
@@ -225,7 +280,7 @@ namespace CreateTask.Console.UnitTests.Logic
       [Fact]
       public void Jul_InBeginning_Should_Return_FirstDayInJuly() {
         DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
-        var optionsParser = new OptionsParser(new List<string> { "-jul" }, dateOfExecuting);
+        var optionsParser = new OptionsParser(new List<string> {"-jul"}, dateOfExecuting);
 
         Assert.Equal(DateTime.Parse("2013-07-01"), optionsParser.DueDate);
       }
@@ -234,7 +289,7 @@ namespace CreateTask.Console.UnitTests.Logic
       [Fact]
       public void Aug_InBeginning_Should_Return_FirstDayInAugust() {
         DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
-        var optionsParser = new OptionsParser(new List<string> { "-aug" }, dateOfExecuting);
+        var optionsParser = new OptionsParser(new List<string> {"-aug"}, dateOfExecuting);
 
         Assert.Equal(DateTime.Parse("2013-08-01"), optionsParser.DueDate);
       }
@@ -243,7 +298,7 @@ namespace CreateTask.Console.UnitTests.Logic
       [Fact]
       public void Sep_InBeginning_Should_Return_FirstDayInSeptember() {
         DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
-        var optionsParser = new OptionsParser(new List<string> { "-sep" }, dateOfExecuting);
+        var optionsParser = new OptionsParser(new List<string> {"-sep"}, dateOfExecuting);
 
         Assert.Equal(DateTime.Parse("2013-09-01"), optionsParser.DueDate);
       }
@@ -252,7 +307,7 @@ namespace CreateTask.Console.UnitTests.Logic
       [Fact]
       public void Oct_InBeginning_Should_Return_FirstDayInOctober() {
         DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
-        var optionsParser = new OptionsParser(new List<string> { "-oct" }, dateOfExecuting);
+        var optionsParser = new OptionsParser(new List<string> {"-oct"}, dateOfExecuting);
 
         Assert.Equal(DateTime.Parse("2013-10-01"), optionsParser.DueDate);
       }
@@ -260,7 +315,7 @@ namespace CreateTask.Console.UnitTests.Logic
       [Fact]
       public void Okt_InBeginning_Should_Return_FirstDayInOctober() {
         DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
-        var optionsParser = new OptionsParser(new List<string> { "-okt" }, dateOfExecuting);
+        var optionsParser = new OptionsParser(new List<string> {"-okt"}, dateOfExecuting);
 
         Assert.Equal(DateTime.Parse("2013-10-01"), optionsParser.DueDate);
       }
@@ -268,7 +323,7 @@ namespace CreateTask.Console.UnitTests.Logic
       [Fact]
       public void Nov_InBeginning_Should_Return_FirstDayInNovember() {
         DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
-        var optionsParser = new OptionsParser(new List<string> { "-nov" }, dateOfExecuting);
+        var optionsParser = new OptionsParser(new List<string> {"-nov"}, dateOfExecuting);
 
         Assert.Equal(DateTime.Parse("2013-11-01"), optionsParser.DueDate);
       }
@@ -277,7 +332,7 @@ namespace CreateTask.Console.UnitTests.Logic
       [Fact]
       public void Dec_InBeginning_Should_Return_FirstDayInOctober() {
         DateTime dateOfExecuting = DateTime.Parse("2012-11-16");
-        var optionsParser = new OptionsParser(new List<string> { "-dec" }, dateOfExecuting);
+        var optionsParser = new OptionsParser(new List<string> {"-dec"}, dateOfExecuting);
 
         Assert.Equal(DateTime.Parse("2012-12-01"), optionsParser.DueDate);
       }
@@ -285,91 +340,29 @@ namespace CreateTask.Console.UnitTests.Logic
 
     #endregion
 
-
-    public class CategoriesTests
-    {
-
-      [Fact]
-      public void P_flag_Should_Set_Personal_CategoryLabel() {
-        OptionsParser op = new OptionsParser(new List<string> { "-p" });
-        Assert.True(op.Tags.Contains("Personal"));
-      }
-
-      [Fact]
-      public void W_flag_Should_Set_Business_CategoryLabel()
-      {
-        OptionsParser op = new OptionsParser(new List<string> { "-w" });
-        Assert.True(op.Tags.Contains("Business"));
-      }
-
-      [Fact]
-      public void B_flag_Should_Set_Business_CategoryLabel()
-      {
-        OptionsParser op = new OptionsParser(new List<string> { "-b" });
-        Assert.True(op.Tags.Contains("Business"));
-      }
-
-      [Fact]
-      public void T_flag_Should_Set_Travel_CategoryLabel()
-      {
-        OptionsParser op = new OptionsParser(new List<string> { "-t" });
-        Assert.True(op.Tags.Contains("Travel"));
-      }
-
-      [Fact]
-      public void I_flag_Should_Set_Info_CategoryLabel()
-      {
-        OptionsParser op = new OptionsParser(new List<string> { "-i" });
-        Assert.True(op.Tags.Contains("Info"));
-      }
-
-      [Fact]
-      public void F_flag_Should_Set_Family_CategoryLabel()
-      {
-        OptionsParser op = new OptionsParser(new List<string> { "-f" });
-        Assert.True(op.Tags.Contains("Family"));
-      }
-
-      [Fact]
-      public void H_flag_Should_Set_House_CategoryLabel()
-      {
-        OptionsParser op = new OptionsParser(new List<string> { "-h" });
-        Assert.True(op.Tags.Contains("Hus"));
-      }
-
-      [Fact]
-      public void Multiple_flags_Should_Set_ManyCategoryLabels()
-      {
-        OptionsParser op = new OptionsParser(new List<string> { "-h", "-t", "-b" });
-        Assert.True(op.Tags.Contains("Hus"));
-        Assert.True(op.Tags.Contains("Business"));
-        Assert.True(op.Tags.Contains("Travel"));
-      }
-
-
-    }
+    #region Nested type: ImportanceTests
 
     public class ImportanceTests
     {
-      [Fact] 
+      [Fact]
       public void Importance_Hp_ShouldBeParsedAsHighImportance() {
-        OptionsParser op = new OptionsParser(new List<string> { "-hp" });
+        var op = new OptionsParser(new List<string> {"-hp"});
         Assert.Equal(TaskPriority.High, op.Importance);
       }
 
       [Fact]
-      public void Importance_Lp_ShouldBeParsedAsLowImportance()
-      {
-        OptionsParser op = new OptionsParser(new List<string> { "-lp" });
+      public void Importance_Lp_ShouldBeParsedAsLowImportance() {
+        var op = new OptionsParser(new List<string> {"-lp"});
         Assert.Equal(TaskPriority.Low, op.Importance);
       }
 
       [Fact]
-      public void Importance_Nothing_ShouldBeParsedAsNormalImportance()
-      {
-        OptionsParser op = new OptionsParser(new List<string> { "" });
+      public void Importance_Nothing_ShouldBeParsedAsNormalImportance() {
+        var op = new OptionsParser(new List<string> {""});
         Assert.Equal(TaskPriority.Normal, op.Importance);
       }
     }
+
+    #endregion
   }
 }

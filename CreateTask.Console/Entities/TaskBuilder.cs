@@ -14,6 +14,8 @@ namespace CreateTask.Entities
       _optionsParser = optionsParser;
     }
 
+    #region ITaskBuilder Members
+
     public ITaskDTO CreateTask() {
       return new TaskDTO
                {
@@ -22,5 +24,7 @@ namespace CreateTask.Entities
                  Tags = _optionsParser.Tags
                };
     }
+
+    #endregion
   }
 }

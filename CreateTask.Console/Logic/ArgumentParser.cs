@@ -18,7 +18,7 @@ namespace CreateTask.Logic
         }
       }
 
-      if(sb.Length == 0 ) {
+      if (sb.Length == 0) {
         return "N/A";
       }
       return sb.ToString().Trim();
