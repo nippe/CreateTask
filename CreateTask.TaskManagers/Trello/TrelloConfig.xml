@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TrelloConfig>
-  <idList>listid</idList>
-  <key>key</key>
-  <token>token</token>
+  <idList></idList>
+  <key></key>
+  <token></token>
 </TrelloConfig>
