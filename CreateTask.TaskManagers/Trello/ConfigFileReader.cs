@@ -47,16 +47,14 @@ namespace CreateTask.TaskManagers.Trello
     }
 
     public string Token {
-      get {
-        return confDoc.Root.Element(key_token).Value;
-      }
+      get { return confDoc.Root.Element(key_token).Value; }
     }
 
     private void EnsureElementValueExists(string elementName) {
       if (string.IsNullOrEmpty(confDoc.Root.Element(elementName).Value)) {
         string newKey = string.Empty;
         InputBox.Show(elementName + " missing",
-                      string.Format("Hi there, we're missing your {0} for Trello. Please enter it below.", elementName), 
+                      string.Format("Hi there, we're missing your {0} for Trello. Please enter it below.", elementName),
                       ref newKey);
         confDoc.Root.Element(elementName).Value = newKey;
         confDoc.Save(configFile);

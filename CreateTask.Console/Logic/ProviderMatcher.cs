@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using CreateTask.Interfaces;
 using System.Linq;
+using CreateTask.Interfaces;
 
 namespace CreateTask.Logic
 {
@@ -10,7 +10,8 @@ namespace CreateTask.Logic
     public static ITaskManager GetMatchingTaskManager(string[] args, IList<ITaskManager> taskManagers) {
       foreach (string option in args) {
         ITaskManager matchingTaskManager =
-          taskManagers.FirstOrDefault(tm => string.Compare(tm.CommandLineSwitch, option, StringComparison.OrdinalIgnoreCase) == 0);
+          taskManagers.FirstOrDefault(
+            tm => string.Compare(tm.CommandLineSwitch, option, StringComparison.OrdinalIgnoreCase) == 0);
         if (matchingTaskManager != null) {
           return matchingTaskManager;
         }
