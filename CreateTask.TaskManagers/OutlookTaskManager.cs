@@ -62,8 +62,10 @@ namespace CreateTask.TaskManagers
       switch (importance) {
         case TaskPriority.High:
           return OlImportance.olImportanceHigh;
+          break;
         case TaskPriority.Low:
           return OlImportance.olImportanceLow;
+          break;
         default:
           return OlImportance.olImportanceNormal;
       }
