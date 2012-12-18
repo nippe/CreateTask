@@ -336,6 +336,18 @@ namespace CreateTask.Console.UnitTests.Logic
 
         Assert.Equal(DateTime.Parse("2012-12-01"), optionsParser.DueDate);
       }
+
+      [Fact]
+      public void SwedishStyleDate20121015_ShouldParseToOctober15th2012() {
+        var op = new OptionsParser(new List<string> {"-d2012-10-15"});
+        Assert.Equal(DateTime.Parse("2012-10-15"), op.DueDate);
+      }
+
+      [Fact]
+      public void UsStyleDate151012_ShouldParseToOctober15th2012() {
+        var op = new OptionsParser(new List<string> {"-d10/15/2012"});
+        Assert.Equal(DateTime.Parse("2012-10-15"), op.DueDate);
+      }
     }
 
     #endregion
@@ -364,5 +376,7 @@ namespace CreateTask.Console.UnitTests.Logic
     }
 
     #endregion
+
+    
   }
 }

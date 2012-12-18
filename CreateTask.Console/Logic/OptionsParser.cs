@@ -142,6 +142,19 @@ namespace CreateTask.Logic
       else if (_options.Contains("-dec")) {
         _dueDate = GetFirstDayInGivenMonth(Month.December);
       }
+      else {
+        foreach (string option in _options) {
+          if(option.StartsWith("-d")) {
+            try {
+              _dueDate = DateTime.Parse(option.Substring(2));
+            }
+            catch (Exception) {
+              //TODO: Log error to file?
+              throw;
+            }
+          }
+        }
+      }
     }
 
     private void ParseImportance() {
